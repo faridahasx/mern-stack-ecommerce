@@ -1,0 +1,90 @@
+#profile {
+    justify-content: space-between;
+    width: 100vw;
+    overflow: hidden;
+    background-color: white;
+    min-height: calc((100 * var(--vh)) - 186px);
+}
+
+#profile-window-empty {
+    font-size: 15px;
+    height: 100%;
+}
+
+/* Nav */
+#profile-nav {
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+}
+
+#profile-ul {
+    width: 100%;
+    height: 100%;
+    padding: 25px 0;
+    overflow: auto;
+}
+
+#profile-ul li {
+    padding-bottom: 10px;
+}
+
+#profile-ul button {
+    width: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Section */
+#profile-window {
+    align-items: center;
+    width: 100%;
+    overflow: auto;
+}
+
+/* Form */
+#profile-window form {
+    align-items: center;
+    width: 90%;
+    /* height: 800px; */
+    /* min-height: 800px; */
+    /* overflow: auto; */
+}
+
+#profile-window h1 {
+    margin: 25px 0;
+}
+
+#profile-window label,
+#profile-window button {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 25px;
+}
+
+.profile-input {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 5px;
+}
+
+#profile-window button {
+    margin-bottom: 25px;
+}
+
+/* Desktop */
+@media all and (min-width: 1001px) {
+    #profile-nav {
+        width: 120px;
+    }
+}
+
+/* Mobile & Tablets */
+@media all and (max-width: 1000px) {
+    #profile-nav {
+        width: 60px;
+        min-width: 60px;
+    }
+}

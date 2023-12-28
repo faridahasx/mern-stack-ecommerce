@@ -1,0 +1,25 @@
+.frp form {
+    width: 100vw;
+}
+
+.frp-input,
+.frp-btn {
+    width: 90%;
+    max-width: 400px;
+    margin-top: 20px;
+}
+
+
+/* Desktop */
+@media all and (min-width: 1001px) {
+    .frp {
+        min-height: calc((100 * var(--vh)) - 110px);
+    }
+}
+
+/* Mobile & Tablets */
+@media all and (max-width: 1000px) {
+    .frp {
+        min-height: calc((100 * var(--vh)) - 90px);
+    }
+}

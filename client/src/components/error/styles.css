@@ -1,0 +1,28 @@
+.err-cntr {
+    flex-direction: column;
+    -ms-flex-direction: column;
+}
+
+.error-wrapper {
+    height: calc((100 * var(--vh)) - 160px);
+}
+
+#error-heading {
+    padding-left: 20px;
+    font-size: 35px;
+}
+
+
+/* Desktop */
+@media all and (min-width: 1001px) {
+    .error-wrapper {
+        height: calc((100 * var(--vh)) - 110px);
+    }
+}
+
+/* Mobile & Tablets */
+@media all and (max-width: 1000px) {
+    .error-wrapper {
+        height: calc((100 * var(--vh)) - 90px);
+    }
+}
