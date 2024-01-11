@@ -22,13 +22,16 @@ const links = [
   },
   { href: "https://twitter.com/faridahasx", icon: <TwitterIcon /> },
 ];
+const DEVELOPER_CONTACT_URL = import.meta.env.VITE_DEVELOPER_CONTACT_URL;
+
+
 
 const Footer = () => {
   return (
     <footer className="flex column">
       <Link
         id="dev-info"
-        to="https://farida-mu.vercel.app/"
+        to={DEVELOPER_CONTACT_URL}
         target="_blank"
         title="Farida Hasanova"
       >

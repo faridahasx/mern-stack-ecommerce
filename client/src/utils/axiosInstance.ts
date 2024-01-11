@@ -1,16 +1,13 @@
 import axios from "axios";
 
-// const baseURL = "https://sw.cyclic.app";
-// const API_URL = process.env.REACT_APP_API_URL;
-
-const baseURL = 'http://localhost:3000'
+const API_URL = import.meta.env.VITE_APP_API_URL;
 
 const axiosBaseInstance = axios.create({
-  baseURL: baseURL,
+  baseURL: API_URL,
 });
 
 const axiosInstance = axios.create({
-  baseURL: baseURL,
+  baseURL: API_URL,
   withCredentials: true,
 });
 
@@ -28,7 +25,7 @@ const getAuthInstance = async () => {
   }
 
   const authInstance = axios.create({
-    baseURL: baseURL,
+    baseURL: API_URL,
     withCredentials: true,
     headers: { Authorization: token },
   });

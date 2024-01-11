@@ -5,6 +5,9 @@ import useWindowSize from "../../hooks/useWindowSize";
 import AuthForm from "../../components/auth/AuthForm";
 import "./styles.css";
 
+const GOOGLE_CALLBACK_URL = import.meta.env.VITE_GOOGLE_CALLBACK_URL;
+
+
 const Auth = () => {
   const location = useLocation();
   const page = location.pathname.split("/")[1];
@@ -19,7 +22,7 @@ const Auth = () => {
   }, [dimensions]);
 
   const handleGoogle = () => {
-    window.open("https://sw.cyclic.app/api/auth/google", "_self");
+    window.open(GOOGLE_CALLBACK_URL, "_self");
   };
 
   return (
