@@ -12,7 +12,7 @@ const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 const PASSWORD = process.env.SOCIAL_PASSWORD;
 const PASSWORD_SECRET = process.env.PASSWORD_SECRET;
 const BASE_URL = process.env.BASE_URL;
-
+console.log(GOOGLE_CLIENT_ID)
 passport.use(
   new GoogleStrategy(
     {
