@@ -20,7 +20,6 @@ const NODE_ENV = process.env.NODE_ENV;
 const COOKIE_SECRET = process.env.COOKIE_SECRET;
 const CLIENT_URL = process.env.CLIENT_URL;
 
-console.log(CLIENT_URL)
 
 // Initialize the App
 const app = express();

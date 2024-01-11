@@ -37,7 +37,7 @@ const SelectInput = ({ setSelectInputData, selectInputData }: Props) => {
             onChange={handleSelectInputChange}
             multiple={item === "size"}
             name={item}
-            value={selectInputData[item as SelectInputDataKey]}
+            value={selectInputData[item as SelectInputDataKey ] as unknown as {name?: string | undefined; value:undefined}|undefined}
           >
             {productValues[item].map((s: string) => (
               <MenuItem key={s} value={s}>
