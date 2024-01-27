@@ -133,13 +133,14 @@ To set up the project locally, follow these steps:
 ## Issues 📝
 Currently, it’s impossible to authenticate iPhone users properly because setting authentication cookies on iPhones requires the server and client to be on the same domain.
 
-## Contact 📇
 
-If you have any questions or feedback, feel free to reach out:
-- 📧Email: farida.hasanova009@gmail.com
-- [🌎 My official website](https://farida-mu.vercel.app/)
-- [X](https://twitter.com/faridahasx)
-- [LinkedIn](https://www.linkedin.com/in/farida-hasanova-879744194/)
+## 📇 Contact 
+
+If you have any queries, please feel free to reach out:
+- [🌎 My official website](https://farida-mu.vercel.app)
+- Email: farida.hasanova009@gmail.com
+- X: [faridahasx](https://twitter.com/faridahasx)
+- LinkedIn: [Farida Hasanova](https://www.linkedin.com/in/farida-hasanova-879744194/)
 
 
 
