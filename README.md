@@ -35,9 +35,10 @@
 - **Code Formatting:**
   - The codebase is formatted using Prettier.
 
-## Acknowledgment
+## Optimizations
+- Add tests
+- Move server and client to the same domain, because setting authentication cookies on iPhones requires the server and client to be on the same domain.
 
-This project was my first venture into React, initiated in 2021. As a learning experience, there might be some bad practices in the code, and I acknowledge that improvements can be made. Feel free to contribute and provide feedback to enhance the project.
 
 ## Usage
 
@@ -128,15 +129,16 @@ To set up the project locally, follow these steps:
 
 
 
+## Issues 📝
+Currently, it’s impossible to authenticate iPhone users properly because setting authentication cookies on iPhones requires the server and client to be on the same domain.
 
-
-## Contact
+## Contact 📇
 
 If you have any questions or feedback, feel free to reach out:
-- Email: farida.hasanova009@gmail.com
-- X: [faridahasx](https://twitter.com/faridahasx)
-- LinkedIn: [Farida Hasanova](https://www.linkedin.com/in/farida-hasanova-879744194/)
-- [My official website](https://farida-mu.vercel.app/)
+- 📧Email: farida.hasanova009@gmail.com
+- [🌎 My official website](https://farida-mu.vercel.app/)
+- [X](https://twitter.com/faridahasx)
+- [LinkedIn](https://www.linkedin.com/in/farida-hasanova-879744194/)
 
 
 

@@ -1,18 +1,15 @@
-const dotenv = require("dotenv");
 const passport = require("passport");
 var GoogleStrategy = require("passport-google-oauth20").Strategy;
 const CryptoJS = require("crypto-js");
 const User = require("../models/User");
 const Address = require("../models/Address");
 
-dotenv.config({ path: "../config.env" });
 
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 const PASSWORD = process.env.SOCIAL_PASSWORD;
 const PASSWORD_SECRET = process.env.PASSWORD_SECRET;
 const BASE_URL = process.env.BASE_URL;
-
 passport.use(
   new GoogleStrategy(
     {

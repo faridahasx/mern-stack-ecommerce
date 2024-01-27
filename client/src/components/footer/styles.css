@@ -1,12 +1,11 @@
 footer {
-    justify-content: space-around;
-    align-items: center;
-    padding: 30px 0;
+    padding: 20px 0;
     background-color: rgb(62, 62, 62);
 }
 
 
 footer a {
+    height: 100%;
     color: rgba(255, 255, 255, 0.669);
     font-size: 15px;
     font-weight: 300;

@@ -3,7 +3,6 @@ const { google } = require("googleapis");
 const dotenv = require("dotenv");
 const { OAuth2 } = google.auth;
 const OAUTH_PLAYGROUND = "https://developers.google.com/oauthplayground";
-dotenv.config({ path: "../config.env" });
 
 const {
   MAILING_SERVICE_CLIENT_ID,

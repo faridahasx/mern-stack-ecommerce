@@ -6,8 +6,11 @@
     min-height: calc((100 * var(--vh)) - 186px);
 }
 
+#profile-window {
+    padding: 0 20px;
+}
+
 #profile-window-empty {
-    font-size: 15px;
     height: 100%;
 }
 

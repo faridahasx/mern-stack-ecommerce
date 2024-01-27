@@ -24,16 +24,14 @@ const links = [
 ];
 const DEVELOPER_CONTACT_URL = import.meta.env.VITE_DEVELOPER_CONTACT_URL;
 
-
-
 const Footer = () => {
   return (
-    <footer className="flex column">
+    <footer className="center column">
       <Link
-        id="dev-info"
         to={DEVELOPER_CONTACT_URL}
         target="_blank"
         title="Farida Hasanova"
+        className="center"
       >
         Contact the developer
       </Link>
