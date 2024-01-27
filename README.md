@@ -2,6 +2,7 @@
 
 [Visit the site](https://sw-shop.netlify.app/) | [Server](https://github.com/faridasLab/mern-stack-ecommerce/tree/main/server) | [Client](https://github.com/faridasLab/mern-stack-ecommerce/tree/main/client)
 
+![Project gif](https://github.com/faridasLab/mern-stack-ecommerce/blob/main/project.gif)
 
 ## Overview
 
