@@ -49,7 +49,7 @@ const homeSliderList = [
       url: "https://res.cloudinary.com/drvlomjmd/image/upload/v1675181145/5BLINGS/cu7uocaeyuldbf62iae5.jpg",
     },
     link: "Sweaters",
-    heading: "Shop for Swaters",
+    heading: "Shop for Sweaters",
 
     bg: "linear-gradient(to right, #c2c6c3  , #dedddb, #4a8fb6 )",
   },
