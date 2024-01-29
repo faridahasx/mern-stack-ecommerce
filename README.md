@@ -38,6 +38,7 @@
 
 ## Optimizations
 - Add tests
+- Add payment system
 - Move server and client to the same domain, because setting authentication cookies on iPhones requires the server and client to be on the same domain.
 
 
