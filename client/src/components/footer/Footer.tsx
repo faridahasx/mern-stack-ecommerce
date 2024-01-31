@@ -11,17 +11,18 @@ const links = [
     href: "mailto:farida.hasanova009@gmail.com? &subject=Project",
     icon: <EmailIcon />,
   },
-  { href: "https://github.com/faridasLab", icon: <GitHubIcon /> },
+  { href: "https://github.com/faridahasx", icon: <GitHubIcon /> },
   {
-    href: "https://www.instagram.com/farida_hsanova/",
+    href: "https://www.instagram.com/faridahasx",
     icon: <InstagramIcon />,
   },
   {
-    href: "https://www.linkedin.com/in/farida-hasanova-879744194/",
+    href: "https://www.linkedin.com/in/faridahasx",
     icon: <LinkedInIcon />,
   },
   { href: "https://twitter.com/faridahasx", icon: <TwitterIcon /> },
 ];
+
 const DEVELOPER_CONTACT_URL = import.meta.env.VITE_DEVELOPER_CONTACT_URL;
 
 const Footer = () => {
