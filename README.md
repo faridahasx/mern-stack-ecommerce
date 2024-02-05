@@ -1,4 +1,4 @@
-# [Ecommerce](https://sw-shop.netlify.app/) application written with MERN (MongoDB, Express, React, Node.js) stack
+# [An e-commerce](https://sw-shop.netlify.app/) application written with MERN (MongoDB, Express, React, Node.js) stack
 
 [Visit the site](https://sw-shop.netlify.app/) | [Server](https://github.com/faridahasx/mern-stack-ecommerce/tree/main/server) | [Client](https://github.com/faridahasx/mern-stack-ecommerce/tree/main/client)
 
