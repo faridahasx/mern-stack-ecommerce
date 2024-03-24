@@ -20,7 +20,6 @@ const NODE_ENV = process.env.NODE_ENV;
 const COOKIE_SECRET = process.env.COOKIE_SECRET;
 const CLIENT_URL = process.env.CLIENT_URL;
 
-
 // Initialize the App
 const app = express();
 
@@ -56,16 +55,17 @@ app.use(passpost.initialize());
 // CORS options
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", CLIENT_URL);
+  res.header("Access-Control-Allow-Credentials", "true");
   res.header(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
   );
   next();
 });
 
 app.use(
   cors({
-    origin: ["*"],
+    origin: [CLIENT_URL],
     methods: "GET, POST, PUT, DELETE, PATCH",
     credentials: true,
   })

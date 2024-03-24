@@ -29,7 +29,6 @@ const getAuthInstance = async () => {
     withCredentials: true,
     headers: { Authorization: token },
   });
-
   return authInstance;
 };
 
