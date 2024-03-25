@@ -14,7 +14,7 @@ import useWindowSize from "./hooks/useWindowSize";
 import { axiosInstance } from "./utils/axiosInstance";
 // Components
 import { Transition } from "./components/Loading/Loading";
-import ErrorBoundary from "///components/Error/ErrorBoundary";
+import ErrorBoundary from "./components/Error/ErrorBoundary";
 
 // Pages
 const Home: any = lazy(() => import("./pages/Home/Home"));
