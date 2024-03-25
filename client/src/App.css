@@ -1,6 +1,7 @@
 /* Variables */
 :root {
   --hover-grey: rgba(0, 0, 0, 0.669);
+  --min-width: 300px;
   --trX: 0%
 }
 
@@ -21,6 +22,8 @@ body {
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
+  min-width: var(--min-width);
+
 }
 
 main {
@@ -82,16 +85,6 @@ button,
   cursor: pointer;
 }
 
-.submit-button {
-  background-color: rgb(85, 82, 79);
-  color: rgb(255, 255, 255);
-}
-
-.submit-button:hover {
-  border-radius: 10px;
-  background-color: rgba(85, 82, 79, 0.9);
-}
-
 /* Text Overflow */
 .text-overflow {
   overflow: hidden;
@@ -148,7 +141,6 @@ button,
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 10px;
   background: rgba(77, 77, 77, 0.236);
 }
 
@@ -181,20 +173,6 @@ button,
   font-weight: 600;
 }
 
-/* Modals */
-.modal-container {
-  position: fixed;
-  z-index: 999;
-  top: 0;
-  display: flex;
-  display: -webkit-flex;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: calc(100 * var(--vh));
-  background-color: rgba(0, 0, 0, 0.366);
-  cursor: pointer;
-}
 
 /* Checkbox */
 .checkbox {
@@ -208,51 +186,6 @@ button,
   margin: 0;
 }
 
-/* Empty cart and products page */
-.empty {
-  background-color: white;
-}
-
-/* Slider */
-.slider-ul {
-  align-items: center;
-  transform: translateX(var(--trX));
-  -o-transform: translateX(var(--trX));
-  -moz-transform: translateX(var(--trX));
-  -webkit-transform: translateX(var(--trX));
-  -ms-transform: translateX(var(--trX));
-  transition: transform 0.4s;
-  -o-transition: transform 0.4s;
-  -moz-transition: transform 0.4s;
-  -webkit-transition: transform 0.4s;
-}
-
-/* Slider Controls */
-.right {
-  right: 0;
-}
-
-.left {
-  left: 0;
-}
-
-.slider-btn {
-  position: absolute;
-  z-index: 2;
-  width: 60px;
-  height: 100%;
-  cursor: auto;
-}
-
-.active-slider-btn {
-  background-color: rgba(0, 11, 11, 0.103);
-  color: white;
-}
-
-.active-slider-btn:hover {
-  background-color: rgba(0, 11, 11, 0.53);
-  cursor: pointer;
-}
 
 /* Alerts */
 .alert-container,
@@ -282,21 +215,4 @@ button,
   bottom: 2px;
   background-color: rgb(50, 49, 49);
   color: white;
-}
-
-/* Desktop */
-@media all and (min-width: 1001px) {
-  .empty {
-    width: 80vw;
-    max-width: 1600px;
-    height: calc((100 * var(--vh)) - 170px);
-  }
-}
-
-/* Mobile & Tablets */
-@media all and (max-width: 1000px) {
-  .empty {
-    width: 100vw;
-    height: calc((100 * var(--vh)) - 150px);
-  }
 }

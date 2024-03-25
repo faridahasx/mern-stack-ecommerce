@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../hooks/useStoreTypes";
-import { Transition } from "../components/loading/Loading";
+import { Transition } from "../components/Loading/Loading";
 
 const LoginSuccess = () => {
   const navigate = useNavigate();

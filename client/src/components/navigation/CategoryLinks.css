@@ -1,0 +1,37 @@
+/* Desktop */
+@media all and (min-width: 1001px) {
+    #categories {
+        width: 80vw;
+        max-width: 1600px;
+        transform: translateX(-10%);
+    }
+
+    .category-li {
+        padding: 10px 20px;
+    }
+
+    .dt-hidden {
+        display: none;
+    }
+
+}
+
+@media all and (max-width: 1000px) {
+
+    #categories {
+        flex-direction: column;
+    }
+
+    .category-li {
+        width: 100%;
+        border-bottom: 0.1px solid rgb(211, 211, 211);
+    }
+
+    .category-link {
+        justify-content: space-between;
+        align-items: center;
+        height: 40px;
+        padding: 0 20px;
+    }
+
+}

@@ -11,6 +11,9 @@ const {
 } = require("../utils/createToken");
 const User = require("../models/User");
 const Address = require("../models/Address");
+const {
+  generateAndSendAuthTokens,
+} = require("../utils/generateAndSendAuthTokens");
 
 const { CLIENT_URL } = process.env;
 
@@ -42,19 +45,7 @@ router.post("/register", async (req, res) => {
     });
     await newUserAddress.save();
 
-    // Create refresh token
-    const refreshToken = createRefreshToken({
-      id: newUser._id,
-      isAdmin: newUser.isAdmin,
-    });
-
-    // Send refresh token
-    res.cookie("refreshtoken", refreshToken, {
-      httpOnly: true,
-      secure: true,
-      sameSite: "none",
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-    });
+    generateAndSendAuthTokens(res, newUser._id, newUser.isAdmin);
 
     res.status(200).json("Register Success!");
   } catch (err) {
@@ -68,7 +59,6 @@ router.post("/login", async (req, res) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
     if (!user) return res.status(400).json("Wrong credentials");
-
     // Verify password
     const hashedPassword = CryptoJS.AES.decrypt(
       user.password,
@@ -78,44 +68,8 @@ router.post("/login", async (req, res) => {
     if (userPassword !== password)
       return res.status(401).json("Wrong credentials");
 
-    // Create refresh token
-    const refreshToken = createRefreshToken({
-      id: user._id,
-      isAdmin: user.isAdmin,
-    });
-
-    // Send refresh token
-    res.cookie("refreshtoken", refreshToken, {
-      httpOnly: true,
-      secure: true,
-      sameSite: "none",
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-    });
-
+    generateAndSendAuthTokens(res, user._id, user.isAdmin);
     res.status(200).json("Login Success!");
-  } catch (err) {
-    return res.status(500).json(err);
-  }
-});
-
-// Get Access Token
-router.post("/refresh_token", async (req, res) => {
-  try {
-    const refresh_token = req.cookies.refreshtoken;
-    if (!refresh_token) return res.status(400).json("Please login");
-
-    jwt.verify(
-      refresh_token,
-      process.env.JWT_REFRESH_TOKEN_SECRET,
-      (err, user) => {
-        if (err) return res.status(400).json("Please login");
-        const accessToken = createAccessToken({
-          id: user.id,
-          isAdmin: user.isAdmin,
-        });
-        res.json({ accessToken });
-      }
-    );
   } catch (err) {
     return res.status(500).json(err);
   }
@@ -217,13 +171,7 @@ router.get(
   }),
   async (req, res) => {
     if (req.user) {
-      const refresh_token = createRefreshToken({ id: req.user._id });
-      res.cookie("refreshtoken", refresh_token, {
-        httpOnly: true,
-        secure: true,
-        sameSite: "none",
-        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-      });
+      generateAndSendAuthTokens(res, req.user._id, req.user.isAdmin);
       res.redirect(CLIENT_URL + "/login-success");
     }
   }

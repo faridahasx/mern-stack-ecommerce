@@ -46,7 +46,7 @@ const homeSliderList = [
   {
     image: {
       public_id: "5BLINGS/cu7uocaeyuldbf62iae5",
-      url: "https://res.cloudinary.com/drvlomjmd/image/upload/v1675181145/5BLINGS/cu7uocaeyuldbf62iae5.jpg",
+      url: "sweater.jpg",
     },
     link: "Sweaters",
     heading: "Shop for Sweaters",
@@ -56,7 +56,7 @@ const homeSliderList = [
   {
     image: {
       public_id: "5BLINGS/c1docmdbw92vhyjwyjnu",
-      url: "https://res.cloudinary.com/drvlomjmd/image/upload/v1675181867/5BLINGS/c1docmdbw92vhyjwyjnu.jpg",
+      url: "sweatshirt.jpg",
     },
     link: "Sweatshirts",
     heading: "Shop for Sweatshirts",
@@ -65,7 +65,7 @@ const homeSliderList = [
   {
     image: {
       public_id: "5BLINGS/eseyfceovfojeekntb6t",
-      url: "https://res.cloudinary.com/drvlomjmd/image/upload/v1675181953/5BLINGS/eseyfceovfojeekntb6t.jpg",
+      url: "t-shirt.jpg",
     },
     link: "T-Shirts",
     heading: "Shop for T-Shirts",

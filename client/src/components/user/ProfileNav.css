@@ -1,0 +1,40 @@
+/* Nav */
+#profile-nav {
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+}
+
+#profile-ul {
+    width: 100%;
+    height: 100%;
+    padding: 25px 0;
+    overflow: auto;
+}
+
+#profile-ul li {
+    padding-bottom: 10px;
+}
+
+#profile-ul button {
+    width: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Desktop */
+@media all and (min-width: 1001px) {
+    #profile-nav {
+        width: 120px;
+    }
+}
+
+/* Mobile & Tablets */
+@media all and (max-width: 1000px) {
+    #profile-nav {
+        width: 60px;
+        min-width: 60px;
+    }
+}

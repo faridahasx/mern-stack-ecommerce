@@ -1,0 +1,38 @@
+#banner {
+    min-width: var(--min-width);
+    /* margin: 40px 0 20px 0; */
+    /* margin-top: 40px; */
+    font-size: 12px;
+}
+
+#banner a {
+    width: 100vw;
+    min-width: var(--min-width);
+    height: 50px;
+    padding: 10px;
+    box-shadow: 0 4px 8px -2px rgba(0, 0, 0, 0.223), 0 6px 20px 0 rgba(0, 0, 0, 0.136);
+    background-color: rgba(46, 48, 71, 0.188);
+}
+
+#banner a:hover {
+    box-shadow: 0 4px 8px -2px rgb(146, 146, 146), 0 6px 20px 0 rgba(0, 0, 0, 0.136);
+}
+
+@media all and (min-width: 1001px) {
+    #banner {
+        margin-top: 40px;
+    }
+
+    #banner a {
+        width: 80vw;
+        max-width: 1600px;
+
+    }
+}
+
+
+@media all and (max-width: 500px) {
+    #banner {
+        font-size: 10px;
+    }
+}

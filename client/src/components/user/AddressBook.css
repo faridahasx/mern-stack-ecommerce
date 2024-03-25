@@ -1,0 +1,18 @@
+#address-form {
+    align-items: center;
+    width: 90%;
+}
+
+
+#address-form label,
+#address-form button {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 25px;
+}
+
+.address-input {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 5px;
+}

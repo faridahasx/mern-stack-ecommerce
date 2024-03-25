@@ -1,0 +1,25 @@
+@media all and (min-width: 1001px) {
+    #user-links {
+        justify-content: flex-end;
+    }
+
+    #user-links li {
+        padding: 0 5px;
+    }
+}
+
+@media all and (max-width: 1000px) {
+    #user-links {
+        padding: 0 20px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.448),
+            0 1px 9px 0 rgba(0, 0, 0, 0.409);
+    }
+
+    #user-links li {
+        padding: 0 5%;
+    }
+
+    .hide-mobile {
+        display: none;
+    }
+}

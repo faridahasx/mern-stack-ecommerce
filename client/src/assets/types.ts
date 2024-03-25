@@ -22,7 +22,7 @@ type Product = {
   _id: string;
 };
 
-interface CartProduct {
+type CartProduct = {
   createdAt: string;
   product: Product;
   quantity: number;
@@ -32,7 +32,7 @@ interface CartProduct {
   user: string;
   __v: number;
   _id: string;
-}
+};
 
 // Filters
 type Filters = {

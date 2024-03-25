@@ -1,10 +1,11 @@
+import "./Search.css";
 import { ChangeEvent, useState, FormEvent, MouseEvent } from "react";
 import { createSearchParams, Link, useNavigate } from "react-router-dom";
 import { IconButton } from "@mui/material";
 import { Clear, SearchOutlined } from "@mui/icons-material";
 import { Product } from "../../assets/types";
 import { axiosBaseInstance } from "../../utils/axiosInstance";
-import "./styles.css";
+import useMakeNetworkRequest from "../../hooks/useMakeNetworkRequest";
 
 type Props = {
   close: Function;
@@ -14,7 +15,7 @@ const Search = ({ close }: Props) => {
   const navigate = useNavigate();
   const [searchResults, setSearchResults] = useState<Array<Product>>([]);
   const [inputData, setInputData] = useState("");
-  const [loading, setLoading] = useState(false);
+  const { executeServerRequest, loading } = useMakeNetworkRequest();
 
   const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,19 +26,17 @@ const Search = ({ close }: Props) => {
     });
   };
 
-  const handleInputChange = async (e: ChangeEvent) => {
+  const handleInputChange = (e: ChangeEvent) => {
     e.preventDefault();
     let value = (e.target as HTMLInputElement).value;
     setInputData(value);
     if (value) {
-      setLoading(true);
-      try {
+      executeServerRequest(async () => {
         const res = await axiosBaseInstance.get(
           `/api/products?title[regex]=${value}`
         );
         setSearchResults(res.data.products);
-      } catch (err) {}
-      setLoading(false);
+      });
     }
   };
 

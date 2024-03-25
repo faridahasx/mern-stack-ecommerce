@@ -5,7 +5,7 @@ const CartItem = require("../models/CartItem");
 // Get User Cart Items
 router.get("/", authentication, async (req, res) => {
   try {
-    const userCart = await CartItem.find({ user: req.user.id }).populate(
+    const userCart = await CartItem.find({ user: req.user.userId }).populate(
       "product"
     );
     return res.status(200).json({
@@ -17,19 +17,20 @@ router.get("/", authentication, async (req, res) => {
   }
 });
 
-// Add 
+// Add
 router.post("/", authentication, async (req, res) => {
   try {
     const { productID, size } = req.body;
+
     const cartItem = await CartItem.findOne({
-      user: req.user.id,
+      user: req.user.userId,
       product: productID,
       size: size,
     });
     if (cartItem) {
       await CartItem.findOneAndUpdate(
         {
-          user: req.user.id,
+          user: req.user.userId,
           product: productID,
           size: size,
         },
@@ -39,7 +40,7 @@ router.post("/", authentication, async (req, res) => {
       );
     } else {
       const newCartItem = new CartItem({
-        user: req.user.id,
+        user: req.user.userId,
         product: productID,
         size: size,
       });

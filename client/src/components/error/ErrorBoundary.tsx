@@ -22,7 +22,11 @@ export default class ErrorBoundary extends Component<Props, State> {
 
   public render() {
     if (this.state.hasError) {
-      return <Error heading="Something went wrong." />;
+      return (
+        <section className="center err-cntr">
+          <Error />
+        </section>
+      );
     }
     return this.props.children;
   }

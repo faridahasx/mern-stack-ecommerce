@@ -1,0 +1,25 @@
+/* Desktop */
+.layout-main {
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100vw;
+    min-width: var(--min-width);
+    overflow-x: auto;
+}
+
+@media all and (min-width: 1001px) {
+    .layout-main {
+        min-height: calc((100 * var(--vh)) - 187px);
+
+    }
+}
+
+
+/* Mobile & Tablets */
+@media all and (max-width: 1000px) {
+    .layout-main {
+        min-height: calc((100 * var(--vh)) - 167px);
+
+    }
+}

@@ -1,29 +1,22 @@
-import { MouseEvent } from "react";
+import Modal from "../Modal/Modal";
+import "./Checkout.css";
 
 type Props = {
-  close: Function;
+  handleClose: Function;
 };
 
-const Checkout = ({ close }: Props) => {
-  const closeModalByClickingBackground = (e: MouseEvent<HTMLElement>) => {
-    const target = e.target as Element;
-    target.className === "modal-container" && close();
-  };
-
+const Checkout = ({ handleClose }: Props) => {
   return (
-    <section
-      className="modal-container"
-      onClick={closeModalByClickingBackground}
-    >
+    <Modal handleClose={handleClose}>
       <div id="checkout-wrapper" className="shadow">
         <h2>This website isn't taking orders right now.</h2>
         <div className="flex">
-          <button className="bolder" onClick={() => close()}>
+          <button className="bolder" onClick={() => handleClose()}>
             OKAY
           </button>
         </div>
       </div>
-    </section>
+    </Modal>
   );
 };
 

@@ -1,15 +1,15 @@
 import { useState } from "react";
-import ProfileNav from "../../components/user/ProfileNav";
-import AddressBook from "../../components/user/AddressBook";
+import ProfileNav from "../../components/User/ProfileNav";
+import AddressBook from "../../components/User/AddressBook";
 import Layout from "../../components/Layout";
-import "./styles.css";
+import "./User.css";
 
 const User = () => {
   const [currentWindow, setCurrentWindow] = useState("Address Book");
 
   return (
     <Layout>
-      <main id="profile" className="flex">
+      <section id="profile" className="flex">
         <ProfileNav
           setCurrentWindow={setCurrentWindow}
           currentWindow={currentWindow}
@@ -23,7 +23,7 @@ const User = () => {
             </h1>
           )}
         </section>
-      </main>
+      </section>
     </Layout>
   );
 };

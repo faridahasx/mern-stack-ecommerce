@@ -1,0 +1,25 @@
+/* Product chart */
+#details-table {
+    min-height: 100px;
+    padding: 0 30px;
+}
+
+#details-table thead,
+#details-table tbody {
+    width: 100%;
+    /* min-width: 100px; */
+}
+
+#details-table th,
+#details-table td {
+    padding: 15px 0 5px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.311);
+    text-align: start;
+}
+
+/* Tablets */
+@media all and (min-width: 801px) {
+    #details-table {
+        width: 55vw;
+    }
+}

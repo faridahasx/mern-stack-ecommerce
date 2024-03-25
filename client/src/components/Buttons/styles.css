@@ -1,0 +1,24 @@
+/* Buttons */
+.submit-button {
+    width: 100%;
+    min-height: 40px;
+    margin: 30px 0;
+    font-size: 18px;
+    background-color: rgb(44, 149, 173);
+    color: rgb(255, 255, 255);
+}
+
+.submit-button:hover {
+    background-color: rgb(61, 166, 189);
+}
+
+.clear-button {
+    color: rgb(44, 149, 173);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(44, 149, 173);
+}
+
+.clear-button:hover {
+    background-color: rgb(255, 255, 255);
+    color: rgb(32, 59, 65);
+}

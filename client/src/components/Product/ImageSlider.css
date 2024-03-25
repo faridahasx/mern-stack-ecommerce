@@ -1,0 +1,42 @@
+.image-slider {
+    position: relative;
+    overflow: hidden;
+    min-width: var(--min-width);
+    background-color: aqua;
+}
+
+#close-slider-btn {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 11, 11, 0.53);
+    color: white;
+}
+
+.image-ul {
+    align-items: center;
+}
+
+.image-ul,
+.slider-img {
+    width: 100vw;
+    height: 100vw;
+    min-width: var(--min-width);
+    min-height: var(--min-width);
+}
+
+/* Desktop */
+@media all and (min-width: 801px) {
+
+    .image-slider,
+    .image-ul,
+    .slider-img {
+        width: 40vw;
+        max-width: 800px;
+        height: 40vw;
+        max-height: 800px;
+    }
+}

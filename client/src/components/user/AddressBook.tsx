@@ -1,10 +1,10 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { InputLabel, Input } from "@mui/material";
-import useNetworkStatus from "../../hooks/useNetworkStatus";
-import { useAppDispatch } from "../../hooks/useStoreTypes";
-import { getAuthInstance } from "../../utils/axiosInstance";
-import { ButtonProgress } from "../loading/Loading";
+import { axiosInstance } from "../../utils/axiosInstance";
+import { ButtonProgress } from "../Loading/Loading";
+import "./AddressBook.css";
+import SubmitButton from "../Buttons/SubmitButton";
+import useMakeNetworkRequest from "../../hooks/useMakeNetworkRequest";
 
 interface UserAddress {
   firstname: string;
@@ -40,38 +40,28 @@ let userAddressInputs = [
 ];
 
 const AddressBook = () => {
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const isOnline = useNetworkStatus();
   const [data, setData] = useState(userAddressInitialState);
-  const [loading, setLoading] = useState(false);
+  const { executeServerRequest, loading } = useMakeNetworkRequest();
 
   useEffect(() => {
-    const getAddress = async () => {
+    executeServerRequest(async () => {
       try {
-        const authInstance = await getAuthInstance();
-        if (!authInstance) return navigate("/login");
-        const res = await authInstance.get("/api/user/address");
+        const res = await axiosInstance.get("/api/user/address");
         setData((state) => ({ ...state, ...res.data }));
       } catch (err) {}
-    };
-    getAddress();
+    });
   }, []);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!isOnline) return;
-    setLoading(true);
-    try {
-      const authInstance = await getAuthInstance();
-      if (!authInstance) return navigate("/login");
-      const res = await authInstance.patch("/api/user/address", data);
-      dispatch({ type: "SUCCESS", payload: res.data });
-    } catch (err: any) {
-      err.response.data &&
-        dispatch({ type: "ERROR", payload: err.response.data });
-    }
-    setLoading(false);
+    executeServerRequest(
+      async () => {
+        await axiosInstance.patch("/api/user/address", data);
+      },
+      [],
+      true,
+      "Saved changes"
+    );
   };
 
   const handleInputChange = (e: ChangeEvent) => {
@@ -81,14 +71,19 @@ const AddressBook = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex column" name="address book">
+    <form
+      id="address-form"
+      onSubmit={handleSubmit}
+      className="flex column"
+      name="Address Book"
+    >
       <h1>Address Book</h1>
       {userAddressInputs.map((i) => (
         <>
           <InputLabel htmlFor={i.name}>{i.label}</InputLabel>
           <Input
             id={i.name}
-            className="profile-input"
+            className="address-input"
             type="text"
             onChange={handleInputChange}
             name={i.name}
@@ -96,9 +91,9 @@ const AddressBook = () => {
           />
         </>
       ))}
-      <button className="submit-button" type="submit" disabled={loading}>
+      <SubmitButton type="submit" disabled={loading}>
         {loading ? <ButtonProgress /> : "Save"}
-      </button>
+      </SubmitButton>
     </form>
   );
 };

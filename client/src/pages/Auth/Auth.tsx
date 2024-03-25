@@ -1,26 +1,14 @@
-import { useEffect } from "react";
+import "./Auth.css";
 import { Link, useLocation } from "react-router-dom";
 import { Google } from "@mui/icons-material";
-import useWindowSize from "../../hooks/useWindowSize";
-import AuthForm from "../../components/auth/AuthForm";
-import "./styles.css";
+import AuthForm from "../../components/Auth/AuthForm";
+import SubmitButton from "../../components/Buttons/SubmitButton";
 
 const GOOGLE_CALLBACK_URL = import.meta.env.VITE_GOOGLE_CALLBACK_URL;
-
 
 const Auth = () => {
   const location = useLocation();
   const page = location.pathname.split("/")[1];
-  const dimensions = useWindowSize();
-
-  useEffect(() => {
-    let root = document.querySelector(":root");
-    (root as HTMLElement).style.setProperty(
-      "--vh",
-      window.innerHeight / 100 + "px"
-    );
-  }, [dimensions]);
-
   const handleGoogle = () => {
     window.open(GOOGLE_CALLBACK_URL, "_self");
   };
@@ -50,22 +38,20 @@ const Auth = () => {
             </Link>
           </div>
           <span
-            className={`flex glider ${page === "register" && "glider-right"}`}
+            className={`flex glider ${
+              page === "register" ? "glider-right" : ""
+            }`}
           ></span>
         </div>
         <div id="form-container" className="align-center full flex column">
           <AuthForm page={page} />
           <span className="auth-span">Or</span>
-          <button
-            id="google-button"
-            className="auth-button"
-            onClick={handleGoogle}
-          >
+          <SubmitButton id="google-button" onClick={handleGoogle}>
             <span id="google-icon" className="center">
               <Google />
             </span>
             <span className="text-overflow">Continue with Google</span>
-          </button>
+          </SubmitButton>
         </div>
       </div>
     </main>

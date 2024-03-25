@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Home, Store, LocalShipping, Logout } from "@mui/icons-material";
-import { useAppDispatch } from "../../hooks/useStoreTypes";
-import useNetworkStatus from "../../hooks/useNetworkStatus";
-import { getAuthInstance } from "../../utils/axiosInstance";
+import { axiosInstance } from "../../utils/axiosInstance";
+import useMakeNetworkRequest from "../../hooks/useMakeNetworkRequest";
+import { ButtonProgress } from "../Loading/Loading";
+import useClearCredentials from "../../hooks/useClearCredentials";
+import "./ProfileNav.css";
 
 const userNav = [
   { title: "Address Book", icon: <Home /> },
@@ -17,28 +17,14 @@ type Props = {
 };
 
 const ProfileNav = ({ setCurrentWindow, currentWindow }: Props) => {
-  const isOnline = useNetworkStatus();
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const [logoutProcess, setLogoutProcess] = useState(false);
+  const { executeServerRequest, loading } = useMakeNetworkRequest();
+  const clearCredentials = useClearCredentials();
 
-  const handleLogout = async () => {
-    if (!isOnline) return;
-    setLogoutProcess(true);
-    try {
-      const authInstance = await getAuthInstance();
-      if (!authInstance) return navigate("/login");
-      await authInstance.get("/api/auth/logout");
-      localStorage.removeItem("firstLogin");
-      dispatch({ type: "IS_LOGGED", payload: false });
-      dispatch({ type: "IS_ADMIN", payload: false });
-      navigate("/");
-      dispatch({ type: "SUCCESS", payload: "Logged Out" });
-    } catch (err: any) {
-      err.response.data &&
-        dispatch({ type: "ERROR", payload: err.response.data });
-    }
-    setLogoutProcess(false);
+  const handleLogout = () => {
+    executeServerRequest(async () => {
+      await axiosInstance.get("/api/auth/logout");
+      clearCredentials();
+    });
   };
 
   return (
@@ -68,11 +54,11 @@ const ProfileNav = ({ setCurrentWindow, currentWindow }: Props) => {
             className="center"
             onClick={handleLogout}
             title="Logout"
-            disabled={logoutProcess}
+            disabled={loading}
           >
             <span className="center">
               <span className="center">
-                <Logout />
+                {loading ? <ButtonProgress /> : <Logout />}
               </span>
               <span className="hidden center">Logout</span>
             </span>

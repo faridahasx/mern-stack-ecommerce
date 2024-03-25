@@ -1,14 +1,12 @@
 import Layout from "../../components/Layout";
-import SortFilterNav from "../../components/sort-and-filter/SortFilterNav";
-import ProductsListing from "../../components/products-listing/ProductsListing";
+import SortFilterNav from "../../components/SortAndFiltersNav/Nav";
+import ProductsListing from "../../components/ProductListing/ProductsListing";
 
 const Products = () => {
   return (
     <Layout>
-      <main>
-        <SortFilterNav />
-        <ProductsListing />
-      </main>
+      <SortFilterNav />
+      <ProductsListing />
     </Layout>
   );
 };

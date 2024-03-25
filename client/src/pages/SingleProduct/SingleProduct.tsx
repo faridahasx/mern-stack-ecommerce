@@ -1,28 +1,29 @@
 import { useState, useEffect } from "react";
-import { Product } from "../../assets/types";
+import { Product as ProductType } from "../../assets/types";
 import useNetworkStatus from "../../hooks/useNetworkStatus";
 import { useAppDispatch, useAppSelector } from "../../hooks/useStoreTypes";
 import { axiosBaseInstance } from "../../utils/axiosInstance";
 // Components
 import Layout from "../../components/Layout";
-import LoadingProduct from "../../components/single-product/LoadingProduct";
-import LoadedProduct from "../../components/single-product/LoadedProduct";
-import Error from "../../components/error/Error";
+import Product from "../../components/Product/Product";
+import Error from "../../components/Error/Error";
 // styles
-import "./styles.css";
+import { CircularProgress } from "@mui/material";
+import useMakeNetworkRequest from "../../hooks/useMakeNetworkRequest";
+import { useLocation } from "react-router-dom";
 
 const SingleProduct = () => {
-  const transition = useAppSelector(
-    (state) => state.transition.isTransitioning
-  );
+  const location = useLocation();
   const dispatch = useAppDispatch();
   const isOnline = useNetworkStatus();
   const [updatedView, setUpdatedView] = useState(false);
-  const [product, setProduct] = useState<Product | null>(null);
-  const [error, setError] = useState("");
+  const [product, setProduct] = useState<ProductType | null>(null);
+  // const [error, setError] = useState("");
+  const { executeServerRequest, loading, error } = useMakeNetworkRequest();
+  const productId = location.pathname.split("/")[2];
 
+  // Update product views
   useEffect(() => {
-    const productId = location.pathname.split("/")[2];
     const updateProductViews = async () => {
       if (!updatedView) {
         setUpdatedView(true);
@@ -33,25 +34,16 @@ const SingleProduct = () => {
         }
       }
     };
-    const fetchProduct = async () => {
-      dispatch({ type: "TRANSITION", payload: true });
-      try {
+    updateProductViews();
+  }, [location]);
+
+  useEffect(() => {
+    !product &&
+      executeServerRequest(async () => {
         const res = await axiosBaseInstance.get(`/api/products/${productId}`);
         setProduct(res.data);
-      } catch (err) {
-        if (!isOnline) {
-          setError("Network Error");
-        } else {
-          setError("Product Not Found");
-        }
-      }
-      dispatch({ type: "TRANSITION", payload: false });
-    };
-    if (isOnline && !product) {
-      fetchProduct();
-      updateProductViews();
-    }
-  }, [location, isOnline, product]);
+      });
+  }, [location, isOnline]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -59,16 +51,12 @@ const SingleProduct = () => {
 
   return (
     <Layout>
-      {error && transition === false ? (
-        <Error heading={error} />
+      {loading && !product ? (
+        <CircularProgress />
+      ) : product ? (
+        <Product product={product} />
       ) : (
-        <main className="center">
-          {transition && !product ? (
-            <LoadingProduct />
-          ) : (
-            product && <LoadedProduct product={product} />
-          )}
-        </main>
+        error && <Error />
       )}
     </Layout>
   );

@@ -1,13 +1,10 @@
 import { Link, createSearchParams } from "react-router-dom";
 import { KeyboardArrowRightOutlined } from "@mui/icons-material";
+import "./CategoryLinks.css";
 
 const categories = ["All", "Sweaters", "Sweatshirts", "T-Shirts", "Jackets"];
 
-type Props = {
-  windowWidth: number;
-};
-
-const CategoryLinks = ({ windowWidth }: Props) => {
+const CategoryLinks = () => {
   return (
     <ul id="categories" className="center">
       {categories.map((item, index) => (
@@ -20,7 +17,8 @@ const CategoryLinks = ({ windowWidth }: Props) => {
             }}
           >
             <span>{item}</span>
-            {windowWidth <= 1000 && <KeyboardArrowRightOutlined />}
+
+            <KeyboardArrowRightOutlined className="dt-hidden" />
           </Link>
         </li>
       ))}

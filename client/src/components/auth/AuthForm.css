@@ -1,0 +1,12 @@
+#auth-form {
+    width: 70%;
+    min-width: calc((var(--min-width) / 100) * 70);
+}
+
+.auth-label {
+    margin-top: 30px;
+}
+
+.auth-input {
+    padding: 0 2%;
+}

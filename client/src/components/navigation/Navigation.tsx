@@ -5,15 +5,13 @@ import {
   CloseOutlined,
   MenuOutlined,
 } from "@mui/icons-material";
-import useWindowSize from "../../hooks/useWindowSize";
 import CategoryLinks from "./CategoryLinks";
-import Search from "../search/Search";
-import PrimaryLinks from "./PrimaryLinks";
-import "./styles.css";
+import Search from "../Search/Search";
+import UserLinks from "./UserLinks";
+import "./Navigation.css";
 
 const Navigation = () => {
   const location = useLocation();
-  const dimensions = useWindowSize();
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchBarOpen, setSearchBarOpen] = useState(false);
   const [headerShadow, setHeaderShadow] = useState(false);
@@ -33,14 +31,6 @@ const Navigation = () => {
       !headerShadow && setHeaderShadow(true);
     }
   }, [location]);
-
-  useEffect(() => {
-    // set vh based off of inner height
-    (document.querySelector(":root") as HTMLElement).style.setProperty(
-      "--vh",
-      window.innerHeight / 100 + "px"
-    );
-  }, [dimensions]);
 
   useEffect(() => {
     // Handle overflow
@@ -72,23 +62,19 @@ const Navigation = () => {
       >
         <header>
           <div id="header-top" className="flex">
-            {dimensions.width <= 1000 && (
-              <button className="icon" onClick={toggleMenuOpen}>
-                {menuOpen ? <CloseOutlined /> : <MenuOutlined />}
-              </button>
-            )}
+            <button className="icon hide-desktop" onClick={toggleMenuOpen}>
+              {menuOpen ? <CloseOutlined /> : <MenuOutlined />}
+            </button>
             <Link className="center logo" title="Home" to="/">
               S.W.
             </Link>
-            {dimensions.width <= 1000 && (
-              <button
-                className="icon"
-                title="Search"
-                onClick={toggleSearchOpen}
-              >
-                {searchBarOpen ? <CloseOutlined /> : <SearchOutlined />}
-              </button>
-            )}
+            <button
+              className="icon hide-desktop"
+              title="Search"
+              onClick={toggleSearchOpen}
+            >
+              {searchBarOpen ? <CloseOutlined /> : <SearchOutlined />}
+            </button>
           </div>
           <div
             id="menu"
@@ -96,11 +82,10 @@ const Navigation = () => {
             onClick={(e) => closeMenuByClickingBackground(e)}
           >
             <nav className="header-nav flex">
-              <CategoryLinks windowWidth={dimensions.width} />
-              <PrimaryLinks
+              <CategoryLinks />
+              <UserLinks
                 searchBarOpen={searchBarOpen}
                 toggleSearchOpen={toggleSearchOpen}
-                windowWidth={dimensions.width}
               />
             </nav>
           </div>

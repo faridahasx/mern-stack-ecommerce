@@ -11,7 +11,7 @@ class QueryFeatures {
 
     if (queryObject["category"])
       queryObject["category"]["in"] = queryObject["category"]["in"].split(",");
-      
+
     if (queryObject["size"])
       queryObject["size"]["in"] = queryObject["size"]["in"].split(",");
     if (queryObject["sleeve"])
@@ -59,8 +59,8 @@ class QueryFeatures {
 
   paginating() {
     const page = this.requestQuery.page * 1 || 1;
-    const limit = this.requestQuery.limit * 1 || 13;
-    const skip = (page - 1) * 12;
+    const limit = this.requestQuery.limit * 1 || 12;
+    const skip = (page - 1) * limit;
     this.databaseQuery = this.databaseQuery.skip(skip).limit(limit);
 
     return this;

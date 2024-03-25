@@ -16,6 +16,12 @@ function useWindowSize() {
         height: window.innerHeight,
         width: window.innerWidth,
       });
+
+      let root = document.querySelector(":root");
+      (root as HTMLElement).style.setProperty(
+        "--vh",
+        window.innerHeight / 100 + "px"
+      );
     };
     window.addEventListener("resize", handleResize);
     handleResize();

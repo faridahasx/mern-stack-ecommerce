@@ -1,0 +1,13 @@
+/* Form */
+#product-form {
+    width: 100vw;
+    max-width: 1000px;
+    min-height: calc((100 * var(--vh)) - 190px);
+}
+
+.product-input,
+#product-form button {
+    width: 90vw;
+    max-width: 700px;
+    margin-bottom: 30px;
+}

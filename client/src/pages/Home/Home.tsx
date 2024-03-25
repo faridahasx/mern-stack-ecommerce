@@ -1,17 +1,14 @@
 import Layout from "../../components/Layout";
-import Slider from "../../components/home/Slider";
-import ProductsHeading from "../../components/home/ProductsHeading";
-import ProductsListing from "../../components/products-listing/ProductsListing";
-import "./styles.css";
+import CateogoriesSlider from "../../components/Home/CateogoriesSlider";
+import Banner from "../../components/Home/Banner";
+import ProductsListing from "../../components/ProductListing/ProductsListing";
 
 const Home = () => {
   return (
     <Layout>
-      <main className="flex column">
-        <Slider />
-        <ProductsHeading />
-        <ProductsListing />
-      </main>
+      <CateogoriesSlider />
+      <Banner heading="Popular Products" />
+      <ProductsListing />
     </Layout>
   );
 };

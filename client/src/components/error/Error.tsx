@@ -3,21 +3,20 @@ import SignalWifiStatusbarConnectedNoInternet4Icon from "@mui/icons-material/Sig
 import "./styles.css";
 
 type Props = {
-  heading: string;
+  heading?: string;
 };
 
-const Error = ({ heading }: Props) => {
+const Error = ({ heading = "Something went wrong" }: Props) => {
   return (
-    <section className="center err-cntr">
-      <div className="center error-wrapper" aria-errormessage="error-heading">
-        {heading == "Network Error" ? (
-          <SignalWifiStatusbarConnectedNoInternet4Icon sx={{ fontSize: 40 }} />
-        ) : (
-          <ErrorIcon sx={{ fontSize: 40 }} />
-        )}
-        <h1 id="error-heading">{heading}</h1>
-      </div>
-    </section>
+    //
+    <div className="center" aria-errormessage="error-heading">
+      {heading == "Network Error" ? (
+        <SignalWifiStatusbarConnectedNoInternet4Icon sx={{ fontSize: 40 }} />
+      ) : (
+        <ErrorIcon sx={{ fontSize: 40 }} />
+      )}
+      <h1 id="error-heading">{heading}</h1>
+    </div>
   );
 };
 

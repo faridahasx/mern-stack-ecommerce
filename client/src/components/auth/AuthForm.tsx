@@ -1,11 +1,13 @@
+import "./AuthForm.css";
 import { useState, ChangeEvent, FormEvent } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { InputLabel, InputAdornment, Input, IconButton } from "@mui/material";
-import useNetworkStatus from "../../hooks/useNetworkStatus";
+import useMakeNetworkRequest from "../../hooks/useMakeNetworkRequest";
 import { useAppDispatch } from "../../hooks/useStoreTypes";
 import { axiosInstance } from "../../utils/axiosInstance";
-import { ButtonProgress } from "../loading/Loading";
+import { ButtonProgress } from "../Loading/Loading";
+import SubmitButton from "../Buttons/SubmitButton";
 
 type Props = {
   page: string;
@@ -14,11 +16,11 @@ type Props = {
 const AuthForm = ({ page }: Props) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const isOnline = useNetworkStatus();
   const [user, setUser] = useState({ email: "", password: "" });
   const { email, password } = user;
+  const { executeServerRequest, loading } = useMakeNetworkRequest();
+
   const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   const handleInputChange = (e: ChangeEvent) => {
     let target = e.target as HTMLInputElement;
@@ -29,23 +31,15 @@ const AuthForm = ({ page }: Props) => {
 
   const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!isOnline) return;
-    setLoading(true);
-    try {
-      const res = await axiosInstance.post(`/api/auth/${page}`, {
+    executeServerRequest(async () => {
+      await axiosInstance.post(`/api/auth/${page}`, {
         email,
         password,
       });
       dispatch({ type: "IS_LOGGED", payload: true });
-      dispatch({ type: "SUCCESS", payload: res.data });
       localStorage.setItem("firstLogin", "true");
       navigate("/");
-    } catch (err: any) {
-      setLoading(false);
-      err.response.data &&
-        dispatch({ type: "ERROR", payload: err.response.data });
-    }
-    setLoading(false);
+    });
   };
 
   return (
@@ -76,27 +70,15 @@ const AuthForm = ({ page }: Props) => {
               onClick={() => {
                 setShowPassword(!showPassword);
               }}
-              onMouseDown={(e) => {
-                e.preventDefault();
-              }}
             >
               {showPassword ? <VisibilityOff /> : <Visibility />}
             </IconButton>
           </InputAdornment>
         }
       />
-      {page === "login" && (
-        <Link className="flex" id="forgot-password" to="/forgot-password">
-          Forgot Password?
-        </Link>
-      )}
-      <button
-        className="submit-button auth-button"
-        type="submit"
-        disabled={loading}
-      >
+      <SubmitButton type="submit" disabled={loading}>
         {loading ? <ButtonProgress /> : page === "login" ? "Login" : "Register"}
-      </button>
+      </SubmitButton>
     </form>
   );
 };
