@@ -3,18 +3,17 @@ import "./App.css";
 // External imports
 import { useEffect, lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-// MUI Components
-import ErrorIcon from "@mui/icons-material/Error";
 // Custom hooks
 import useNetworkStatus from "./hooks/useNetworkStatus";
 import { useAppDispatch, useAppSelector } from "./hooks/useStoreTypes";
 import useWindowSize from "./hooks/useWindowSize";
 // Utils
-
 import { axiosInstance } from "./utils/axiosInstance";
 // Components
 import { Transition } from "./components/Loading/Loading";
 import ErrorBoundary from "./components/Error/ErrorBoundary";
+import Alert from "./components/Alerts/Alert";
+import NoInternetAlert from "./components/Alerts/NoInternetAlert";
 
 // Pages
 const Home: any = lazy(() => import("./pages/Home/Home"));
@@ -27,14 +26,10 @@ const User: any = lazy(() => import("./pages/User/User"));
 const ProductForm: any = lazy(() => import("./pages/ProductForm/ProductForm"));
 
 function App() {
-  const alert = useAppSelector((state) => state.alert);
   const auth = useAppSelector((state) => state.auth);
-  const { error, success } = alert;
   const dispatch = useAppDispatch();
   const isOnline = useNetworkStatus();
   useWindowSize();
-  console.log(auth.isLogged, "APP");
-
   useEffect(() => {
     const getCredentials = async () => {
       try {
@@ -50,44 +45,11 @@ function App() {
     if (!auth.isLogged && localStorage.getItem("firstLogin")) getCredentials();
   }, [auth.isLogged]);
 
-  useEffect(() => {
-    if (error) {
-      setTimeout(() => {
-        dispatch({ type: "ERROR", payload: "" });
-      }, 4000);
-    }
-  }, [error, dispatch]);
-
-  useEffect(() => {
-    if (success) {
-      setTimeout(() => {
-        dispatch({ type: "SUCCESS", payload: "" });
-      }, 3000);
-    }
-  }, [success, dispatch]);
-
   return (
     <BrowserRouter>
-      {(error || success) && (
-        <div className="alert-container">
-          {error && (
-            <div className="center error">
-              <ErrorIcon />
-              <span className="center">{error}</span>
-            </div>
-          )}
-          {success && (
-            <div className="center success">
-              <span className="center">{success}</span>
-            </div>
-          )}
-        </div>
-      )}
-      {!isOnline && (
-        <div id="no-internet-connection" className="center">
-          No internet connection
-        </div>
-      )}
+      <Alert />
+
+      {!isOnline && <NoInternetAlert />}
       <ErrorBoundary>
         <Suspense fallback={<Transition />}>
           <Routes>

@@ -1,21 +1,21 @@
 import { useState, useLayoutEffect } from "react";
 
 function useWindowSize() {
-  const [dimensions, setDimension] = useState({
-    height: window.innerHeight,
-    width: window.innerWidth,
-    previousWidth: 0,
-    previousHeight: 0,
-  });
+  // const [dimensions, setDimension] = useState({
+  //   height: window.innerHeight,
+  //   width: window.innerWidth,
+  //   previousWidth: 0,
+  //   previousHeight: 0,
+  // });
 
   useLayoutEffect(() => {
     const handleResize = () => {
-      setDimension({
-        previousHeight: dimensions.height,
-        previousWidth: dimensions.width,
-        height: window.innerHeight,
-        width: window.innerWidth,
-      });
+      // setDimension({
+      //   previousHeight: dimensions.height,
+      //   previousWidth: dimensions.width,
+      //   height: window.innerHeight,
+      //   width: window.innerWidth,
+      // });
 
       let root = document.querySelector(":root");
       (root as HTMLElement).style.setProperty(
@@ -29,7 +29,7 @@ function useWindowSize() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return dimensions;
+  // return dimensions;
 }
 
 export default useWindowSize;
