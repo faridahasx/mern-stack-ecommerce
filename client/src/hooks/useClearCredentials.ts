@@ -2,7 +2,7 @@
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "./useStoreTypes";
 
-// Custom React hook to clear credentials and update Redux state
+// Custom React hook to clea user credentials
 const useClearCredentials = () => {
   // Get the dispatch function from the Redux store
   const dispatch = useAppDispatch();

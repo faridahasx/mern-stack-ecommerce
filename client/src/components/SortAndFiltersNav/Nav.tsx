@@ -1,6 +1,7 @@
 import "./Nav.css";
 import { Suspense, lazy, useState } from "react";
 import { FilterList, Sort } from "@mui/icons-material";
+import ModalLoading from "../Modal/ModalLoading";
 
 const SortForm = lazy(() => import("../Sort/SortForm"));
 const Filters = lazy(() => import("../Filters/Filters"));
@@ -32,7 +33,7 @@ const Nav = () => {
         </li>
       </ul>
 
-      <Suspense>
+      <Suspense fallback={<ModalLoading handleClose={handleCloseModal} />}>
         {openModal === "filters" ? (
           <Filters
             closeModal={handleCloseModal}

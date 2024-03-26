@@ -2,8 +2,8 @@ import { ChangeEvent } from "react";
 import { InputLabel, Input } from "@mui/material";
 import { image } from "../../assets/types";
 import { useAppDispatch } from "../../hooks/useStoreTypes";
-import { axiosInstance } from "../../utils/axiosInstance";
 import useMakeNetworkRequest from "../../hooks/useMakeNetworkRequest";
+import { axiosInstance } from "../../utils/axiosInstance";
 
 type Props = {
   setUploadingImg: Function;

@@ -1,14 +1,17 @@
-import { useState, MouseEvent, useEffect } from "react";
+import "./Navigation.css";
+import { useState, MouseEvent, useEffect, lazy, Suspense } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
   SearchOutlined,
   CloseOutlined,
   MenuOutlined,
 } from "@mui/icons-material";
-import CategoryLinks from "./CategoryLinks";
-import Search from "../Search/Search";
+import Categories from "./Categories";
 import UserLinks from "./UserLinks";
-import "./Navigation.css";
+import ModalLoading from "../Modal/ModalLoading";
+import useKeyDownListener from "../../hooks/useKeydownListener";
+
+const Search = lazy(() => import("../Search/Search"));
 
 const Navigation = () => {
   const location = useLocation();
@@ -54,6 +57,15 @@ const Navigation = () => {
     setSearchBarOpen(!searchBarOpen);
   };
 
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === "Escape") {
+      if (searchBarOpen) setSearchBarOpen(false);
+      else if (menuOpen) setMenuOpen(false);
+    }
+  };
+
+  useKeyDownListener(handleKeyDown);
+
   return (
     <div id="header-container" className="center">
       <div
@@ -82,14 +94,20 @@ const Navigation = () => {
             onClick={(e) => closeMenuByClickingBackground(e)}
           >
             <nav className="header-nav flex">
-              <CategoryLinks />
+              <Categories />
               <UserLinks
                 searchBarOpen={searchBarOpen}
                 toggleSearchOpen={toggleSearchOpen}
               />
             </nav>
           </div>
-          {searchBarOpen && <Search close={toggleSearchOpen} />}
+          {searchBarOpen && (
+            <Suspense
+              fallback={<ModalLoading handleClose={toggleSearchOpen} />}
+            >
+              <Search close={toggleSearchOpen} />
+            </Suspense>
+          )}
         </header>
       </div>
     </div>

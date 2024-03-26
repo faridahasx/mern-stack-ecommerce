@@ -1,6 +1,6 @@
+import "./OpenFieldsButton.css";
 import { MouseEvent } from "react";
 import { KeyboardArrowUp, KeyboardArrowDown } from "@mui/icons-material";
-import "./OpenFieldsButton.css";
 
 type Props = {
   openFilter: String;

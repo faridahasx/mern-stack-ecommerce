@@ -4,6 +4,14 @@ const { authentication, authorization } = require("../middleware/authVerify");
 const QueryFeatures = require("../utils/productsQuery");
 const Product = require("../models/Product");
 const CartItem = require("../models/CartItem");
+const {
+  EMPTY_IMAGE,
+  PRODUCT_CREATED,
+  PRODUCT_NOT_FOUND,
+  DUPLICATE_TITLES,
+  PRODUCT_UPDATED,
+  PRODUCT_DELETED,
+} = require("../responseMessages");
 
 // Get products
 router.get("/", async (req, res) => {
@@ -27,13 +35,13 @@ router.get("/", async (req, res) => {
 // Add product
 router.post("/", authentication, authorization, async (req, res) => {
   try {
-    if (!req.body.images) return res.status(400).json("Empty image field!");
+    if (!req.body.images) return res.status(400).json(EMPTY_IMAGE);
     const product = await Product.findOne({ title: req.body.title });
-    if (product) return res.status(400).json("Title already exists.");
+    if (product) return res.status(400).json();
 
     const newProduct = new Product(req.body);
     await newProduct.save();
-    res.status(200).json("Successfully created the product.");
+    res.status(200).json(PRODUCT_CREATED);
   } catch (err) {
     return res.status(500).json(err.message);
   }
@@ -42,11 +50,14 @@ router.post("/", authentication, authorization, async (req, res) => {
 // Get product by ID
 router.get("/:id", async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id);
-    if (!product) return res.status(404).json("Product not found.");
+    const product = await Product.findByIdAndUpdate(req.params.id, {
+      $inc: { views: 1 },
+    });
+
+    if (!product) return res.status(404).json(PRODUCT_NOT_FOUND);
     res.status(200).json(product);
   } catch (err) {
-    res.status(500).json(err);
+    return res.status(404).json(PRODUCT_NOT_FOUND);
   }
 });
 
@@ -55,7 +66,7 @@ router.put("/:id", authentication, authorization, async (req, res) => {
   try {
     const product = await Product.findOne({ title: req.body.title });
     if (product && product.id !== req.params.id)
-      return res.status(400).json("Title already exists.");
+      return res.status(400).json(DUPLICATE_TITLES);
     await Product.findByIdAndUpdate(
       req.params.id,
       {
@@ -63,19 +74,9 @@ router.put("/:id", authentication, authorization, async (req, res) => {
       },
       { new: true }
     );
-    res.status(200).json("Successfully updated the product.");
+    res.status(200).json(PRODUCT_UPDATED);
   } catch (err) {
     res.status(500).json(err);
-  }
-});
-
-// Increase product views
-router.patch("/:id", async (req, res) => {
-  try {
-    await Product.findByIdAndUpdate(req.params.id, { $inc: { views: 1 } });
-    return res.status(200).json("Updated views.");
-  } catch (err) {
-    return res.status(500).json(err);
   }
 });
 
@@ -83,7 +84,7 @@ router.patch("/:id", async (req, res) => {
 router.delete("/:id", authentication, authorization, async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
-    if (!product) return res.status(404).json("Product was not found.");
+    if (!product) return res.status(404).json(PRODUCT_NOT_FOUND);
     const { title, images } = product;
     images.forEach(async (img) => {
       await cloudinary.v2.uploader.destroy(
@@ -95,7 +96,7 @@ router.delete("/:id", authentication, authorization, async (req, res) => {
     });
     await Product.findOneAndDelete({ title: title });
     await CartItem.deleteMany({ product: req.params.id });
-    res.status(200).json("Successfully deleted the product.");
+    res.status(200).json(PRODUCT_DELETED);
   } catch (err) {
     res.status(500).json(err);
   }

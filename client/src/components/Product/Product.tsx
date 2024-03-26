@@ -1,10 +1,10 @@
+import "./Product.css";
 import { Link, createSearchParams } from "react-router-dom";
 import { DoubleArrow } from "@mui/icons-material";
 import { Product as ProductType } from "../../assets/types";
 import ImageSlider from "./ImageSlider";
 import PrimaryDetailsAndControls from "./PrimaryDetailsAndControls";
 import DetailsTable from "./DetailsTable";
-import "./Product.css";
 
 type Props = {
   product: ProductType;

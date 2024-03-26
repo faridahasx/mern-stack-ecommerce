@@ -55,7 +55,7 @@ const useMakeNetworkRequest = () => {
     setLoading(false);
   };
 
-  return { executeServerRequest, loading, error };
+  return { executeServerRequest, loading, error, isOnline };
 };
 
 export default useMakeNetworkRequest;

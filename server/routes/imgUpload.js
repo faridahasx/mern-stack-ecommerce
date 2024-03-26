@@ -24,44 +24,55 @@ cloudinary.config({
 });
 
 // Upload Image
-router.post("/", authentication, authorization, uploaad.single("file"), async (req, res) => {
-  try {
-    const directoryPath = path.join(__dirname, "uploads");
-    let filePath = "";
-    fs.readdir(directoryPath, "utf8", function (err, data) {
-      if (err) {
-        return res.status(500).json(err);
-      }
-      filePath = path.join(directoryPath, data[0]);
-      cloudinary.v2.uploader.upload(
-        filePath,
-        { folder: "e-commerce-photos" },
-        async (err, result) => {
-          if (err) return res.status(500).json(err);
-          fs.unlink(filePath, (err) => {
-            if (err) console.log("UNLINK:", err);
-          });
-          res.json({ public_id: result.public_id, url: result.secure_url });
+router.post(
+  "/",
+  authentication,
+  authorization,
+  uploaad.single("file"),
+  async (req, res) => {
+    try {
+      const directoryPath = path.join(__dirname, "uploads");
+      let filePath = "";
+      fs.readdir(directoryPath, "utf8", function (err, data) {
+        if (err) {
+          return res.status(500).json(err);
         }
-      );
-    });
-  } catch (err) {
-    return res.status(500).json(err.message);
+        filePath = path.join(directoryPath, data[0]);
+        cloudinary.v2.uploader.upload(
+          filePath,
+          { folder: "e-commerce-photos" },
+          async (err, result) => {
+            if (err) return res.status(500).json(err);
+            fs.unlink(filePath, (err) => {
+              if (err) console.log("UNLINK:", err);
+            });
+            res.json({ public_id: result.public_id, url: result.secure_url });
+          }
+        );
+      });
+    } catch (err) {
+      return res.status(500).json(err.message);
+    }
   }
-});
+);
 
 // Delete Image
-router.delete("/e-commerce-photos/:id", authentication, authorization, async (req, res) => {
-  try {
-    if (!req.params.id) return res.status(400).json("Please select an image.");
-    let public_id = "e-commerce-photos/" + req.params.id;
-    cloudinary.v2.uploader.destroy(public_id, async (err, result) => {
-      if (err) throw err;
-      res.json("Successfully deleted the image.");
-    });
-  } catch (err) {
-    return res.status(500).json(err.message);
+router.delete(
+  "/e-commerce-photos/:id",
+  authentication,
+  authorization,
+  async (req, res) => {
+    try {
+      if (!req.params.id) return res.status(400).json("Please select an image");
+      let public_id = "e-commerce-photos/" + req.params.id;
+      cloudinary.v2.uploader.destroy(public_id, async (err, result) => {
+        if (err) throw err;
+        res.json("Successfully deleted the image");
+      });
+    } catch (err) {
+      return res.status(500).json(err.message);
+    }
   }
-});
+);
 
 module.exports = router;

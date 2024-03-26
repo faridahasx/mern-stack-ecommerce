@@ -1,5 +1,5 @@
-import { Product } from "../../assets/types";
 import "./DetailsTable.css";
+import { Product } from "../../assets/types";
 
 type Props = {
   product: Product;

@@ -1,28 +1,25 @@
 import "./Cart.css";
 import { useState, useEffect, lazy, Suspense } from "react";
-import { CircularProgress } from "@mui/material";
 import { CartProduct } from "../../assets/types";
-import useNetworkStatus from "../../hooks/useNetworkStatus";
 import useMakeNetworkRequest from "../../hooks/useMakeNetworkRequest";
 import { axiosInstance } from "../../utils/axiosInstance";
 import Layout from "../../components/Layout";
 import CartListing from "../../components/Cart/CartListing";
 import SubmitButton from "../../components/Buttons/SubmitButton";
 import ModalLoading from "../../components/Modal/ModalLoading";
-import Error from "../../components/Error/Error";
+import RenderFetchedData from "../../components/RenderFetchedData";
 
 const Checkout = lazy(() => import("../../components/Cart/Checkout"));
 
 const Cart = () => {
-  const isOnline = useNetworkStatus();
   const [cartProducts, setCartProducts] = useState<Array<CartProduct> | null>(
     null
   );
   const [totalPrice, setTotalPrice] = useState(0);
-  // const [loading, setLoading] = useState(true);
   const [checkout, setCheckout] = useState(false);
 
-  const { executeServerRequest, loading, error } = useMakeNetworkRequest();
+  const { executeServerRequest, loading, error, isOnline } =
+    useMakeNetworkRequest();
 
   useEffect(() => {
     if (!cartProducts) {
@@ -63,24 +60,26 @@ const Cart = () => {
           <SubmitButton
             id="checkout-button"
             onClick={toggleCheckout}
-            disabled={loading || !cartProducts}
+            disabled={totalPrice === 0}
           >
             Checkout
           </SubmitButton>
         </div>
       </div>
-      {loading ? (
-        <CircularProgress />
-      ) : cartProducts && cartProducts.length > 0 ? (
-        <CartListing
-          cartProducts={cartProducts}
-          setCartProducts={setCartProducts}
-        />
-      ) : error ? (
-        <Error />
-      ) : (
-        !loading && "Cart is empty"
-      )}
+      <RenderFetchedData
+        isLoading={loading}
+        isOnline={isOnline}
+        isError={error}
+        emptyResultMessage="Cart is empty"
+        data={cartProducts}
+      >
+        {cartProducts && (
+          <CartListing
+            cartProducts={cartProducts}
+            setCartProducts={setCartProducts}
+          />
+        )}
+      </RenderFetchedData>
       <Suspense fallback={<ModalLoading handleClose={toggleCheckout} />}>
         {checkout && <Checkout handleClose={toggleCheckout} />}
       </Suspense>

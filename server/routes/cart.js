@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { authentication } = require("../middleware/authVerify");
 const CartItem = require("../models/CartItem");
+const { CART_UPDATED } = require("../responseMessages");
 
 // Get User Cart Items
 router.get("/", authentication, async (req, res) => {
@@ -46,7 +47,7 @@ router.post("/", authentication, async (req, res) => {
       });
       await newCartItem.save();
     }
-    res.status(200).json("Updated cart");
+    res.status(200).json(CART_UPDATED);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -75,7 +76,7 @@ router.put("/", authentication, async (req, res) => {
           selected: req.body.selection[element],
         });
       });
-    return res.status(200).json("Updated cart");
+    return res.status(200).json(CART_UPDATED);
   } catch (err) {
     return res.status(500).json(err);
   }
@@ -91,7 +92,7 @@ router.patch("/quantity/:id", authentication, async (req, res) => {
       : await CartItem.findByIdAndUpdate(req.params.id, {
           quantity: req.body.quantity,
         });
-    return res.status(200).json("Updated cart");
+    return res.status(200).json(CART_UPDATED);
   } catch (err) {
     console.log(err);
     return res.status(500).json(err);
@@ -104,7 +105,7 @@ router.patch("/select/:id", authentication, async (req, res) => {
     await CartItem.findByIdAndUpdate(req.params.id, {
       selected: req.body.selected,
     });
-    return res.status(200).json("Updated cart");
+    return res.status(200).json(CART_UPDATED);
   } catch (err) {
     return res.status(500).json(err);
   }

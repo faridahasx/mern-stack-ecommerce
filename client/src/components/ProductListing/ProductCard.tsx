@@ -1,10 +1,10 @@
+import "./ProductCard.css";
 import { Link } from "react-router-dom";
 import { Delete, Edit } from "@mui/icons-material";
 import { Product } from "../../assets/types";
 import { useAppSelector } from "../../hooks/useStoreTypes";
-import { axiosInstance } from "../../utils/axiosInstance";
-import "./ProductCard.css";
 import useMakeNetworkRequest from "../../hooks/useMakeNetworkRequest";
+import { axiosInstance } from "../../utils/axiosInstance";
 
 type Props = {
   product: Product;

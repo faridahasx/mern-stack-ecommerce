@@ -14,6 +14,14 @@ const Address = require("../models/Address");
 const {
   generateAndSendAuthTokens,
 } = require("../utils/generateAndSendAuthTokens");
+const {
+  FILL_REQUIRED_FIELDS,
+  INVALID_EMAIL,
+  DUPLICATE_EMAIL,
+  REGISTER_SUCCESS,
+  INVALID_CREDENTIALS,
+  LOGIN_SUCCESS,
+} = require("../responseMessages");
 
 const { CLIENT_URL } = process.env;
 
@@ -21,15 +29,14 @@ const { CLIENT_URL } = process.env;
 router.post("/register", async (req, res) => {
   try {
     const { email, password } = req.body;
-    if (!email || !password)
-      return res.status(400).json("Please fill in all fields.");
-    if (!validateEmail(email)) return res.status(400).json("Invalid email");
+    if (!email || !password) return res.status(400).json(FILL_REQUIRED_FIELDS);
+    if (!validateEmail(email)) return res.status(400).json(INVALID_EMAIL);
 
     const user = await User.findOne({ email });
-    if (user) return res.status(400).json("This email already exists.");
+    if (user) return res.status(400).json(DUPLICATE_EMAIL);
 
     if (password.length < 8)
-      return res.status(400).json("Password must be at least 8 characters.");
+      return res.status(400).json("Password must be at least 8 characters");
 
     // Create user
     const newUser = new User({
@@ -47,7 +54,7 @@ router.post("/register", async (req, res) => {
 
     generateAndSendAuthTokens(res, newUser._id, newUser.isAdmin);
 
-    res.status(200).json("Register Success!");
+    res.status(200).json(REGISTER_SUCCESS);
   } catch (err) {
     return res.status(500).json(err);
   }
@@ -58,7 +65,7 @@ router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
-    if (!user) return res.status(400).json("Wrong credentials");
+    if (!user) return res.status(400).json(INVALID_CREDENTIALS);
     // Verify password
     const hashedPassword = CryptoJS.AES.decrypt(
       user.password,
@@ -66,58 +73,11 @@ router.post("/login", async (req, res) => {
     );
     const userPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
     if (userPassword !== password)
-      return res.status(401).json("Wrong credentials");
+      return res.status(401).json(INVALID_CREDENTIALS);
 
     generateAndSendAuthTokens(res, user._id, user.isAdmin);
-    res.status(200).json("Login Success!");
+    res.status(200).json(LOGIN_SUCCESS);
   } catch (err) {
-    return res.status(500).json(err);
-  }
-});
-
-// Forgot password
-router.post("/forgot-password", async (req, res) => {
-  try {
-    const { email } = req.body;
-    const user = await User.findOne({ email });
-    if (!user) return res.status(400).json("Email does not exit.");
-    // Create and send access token
-    const accessToken = createResetPasswordToken({ id: user._id });
-    const url = `${CLIENT_URL}/reset-password/${accessToken}`;
-    sendEmail(email, url, "Reset Password");
-    res.json("Please check your email for the reset link.");
-  } catch (err) {
-    return res.status(500).json(err);
-  }
-});
-
-// Reset Password
-router.post("/reset-password/:token", async (req, res) => {
-  try {
-    const { password } = req.body;
-    if (password.length < 8)
-      return res.status(400).json("Password must be at least 8 characters.");
-
-    const resetPasswordToken = req.params.token;
-    const user = jwt.verify(
-      resetPasswordToken,
-      process.env.JWT_RESET_PASSWORD_REFRESH_TOKEN_SECRET
-    );
-    if (!user) return res.status(400).json("Invalid token.");
-
-    const { id } = user;
-    const hashedPassword = CryptoJS.AES.encrypt(
-      password,
-      process.env.PASSWORD_SECRET
-    ).toString();
-    await User.findOneAndUpdate(id, {
-      password: hashedPassword,
-    });
-    res.json("Password has been changed successfully!");
-  } catch (err) {
-    if (err.name === "TokenExpiredError") {
-      return res.status(500).json("Invalid token, please request a new one.");
-    }
     return res.status(500).json(err);
   }
 });
@@ -126,7 +86,7 @@ router.post("/reset-password/:token", async (req, res) => {
 router.get("/logout", async (req, res) => {
   try {
     res.clearCookie("refreshtoken", { path: "api/user/refresh_token" });
-    return res.json("Logged out.");
+    return res.json("Logged Out");
   } catch (err) {
     return res.status(500).json(err);
   }
@@ -150,7 +110,7 @@ router.get("/login/success", (req, res) => {
       sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
-    res.status(200).json("Login success!");
+    res.status(200).json(LOGIN_SUCCESS);
   }
 });
 

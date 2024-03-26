@@ -1,16 +1,16 @@
+import "./ProductForm.css";
 import { useEffect, useState, FormEvent } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ProductInputData, SelectInputData, image } from "../../assets/types";
 import { useAppDispatch } from "../../hooks/useStoreTypes";
+import useMakeNetworkRequest from "../../hooks/useMakeNetworkRequest";
 import { axiosBaseInstance, axiosInstance } from "../../utils/axiosInstance";
 import Layout from "../../components/Layout";
 import UploadedImages from "../../components/ProductForm/UploadedImages";
 import ImageInput from "../../components/ProductForm/ImageInput";
 import DataInput from "../../components/ProductForm/DataInput";
 import SelectInput from "../../components/ProductForm/SelectInput";
-import "./ProductForm.css";
 import SubmitButton from "../../components/Buttons/SubmitButton";
-import useMakeNetworkRequest from "../../hooks/useMakeNetworkRequest";
 import { ButtonProgress } from "../../components/Loading/Loading";
 
 const ProductForm = () => {

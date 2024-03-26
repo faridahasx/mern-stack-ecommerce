@@ -1,10 +1,10 @@
+import "./Categories.css";
 import { Link, createSearchParams } from "react-router-dom";
 import { KeyboardArrowRightOutlined } from "@mui/icons-material";
-import "./CategoryLinks.css";
 
 const categories = ["All", "Sweaters", "Sweatshirts", "T-Shirts", "Jackets"];
 
-const CategoryLinks = () => {
+const Categories = () => {
   return (
     <ul id="categories" className="center">
       {categories.map((item, index) => (
@@ -26,4 +26,4 @@ const CategoryLinks = () => {
   );
 };
 
-export default CategoryLinks;
+export default Categories;

@@ -1,3 +1,4 @@
+import "./UserLinks.css";
 import { Link } from "react-router-dom";
 import {
   PersonOutlined,
@@ -7,7 +8,6 @@ import {
   FileUploadOutlined,
 } from "@mui/icons-material";
 import { useAppSelector } from "../../hooks/useStoreTypes";
-import "./UserLinks.css";
 
 type Props = {
   toggleSearchOpen: Function;
@@ -16,7 +16,6 @@ type Props = {
 
 const NavLinks = ({ toggleSearchOpen, searchBarOpen }: Props) => {
   const auth = useAppSelector((state) => state.auth);
-  console.log(auth.isLogged, "NAV");
 
   return (
     <ul id="user-links" className="center">

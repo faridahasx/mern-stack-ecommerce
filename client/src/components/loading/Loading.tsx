@@ -1,5 +1,5 @@
+import "./Loading.css";
 import { CircularProgress, LinearProgress } from "@mui/material";
-import "./styles.css";
 
 const Transition = () => {
   return (
@@ -10,7 +10,7 @@ const Transition = () => {
 };
 
 const ButtonProgress = () => {
-  return <CircularProgress className="btn-progress" />;
+  return <CircularProgress sx={{ color: "white" }} className="btn-progress" />;
 };
 
 export { Transition, ButtonProgress };

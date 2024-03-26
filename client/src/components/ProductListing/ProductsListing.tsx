@@ -1,20 +1,15 @@
+import "./ProductsListing.css";
 import { startTransition, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
-// Assets
 import { Product } from "../../assets/types";
-// Custom hooks
 import useElementOnScreen from "../../hooks/useElementOnScreen";
-// Utils
-import { axiosBaseInstance } from "../../utils/axiosInstance";
-// Components
-import ProductCard from "./ProductCard";
-// Styles
-import "./ProductsListing.css";
 import useMakeNetworkRequest from "../../hooks/useMakeNetworkRequest";
-import { Transition } from "../Loading/Loading";
 import getSearchQuery from "../../utils/getSearchQuery";
-import Error from "../Error/Error";
+import { axiosBaseInstance } from "../../utils/axiosInstance";
+import ProductCard from "./ProductCard";
+import { Transition } from "../Loading/Loading";
+import RenderFetchedData from "../RenderFetchedData";
 
 const productLimit = 12;
 
@@ -37,7 +32,8 @@ const ProductsListing = () => {
   const [initialLoad, setInitialLoad] = useState(false);
   const [pageIndex, setPageIndex] = useState(1);
   const [searchQueryString, setSearchQueryString] = useState("");
-  const { executeServerRequest, loading, error } = useMakeNetworkRequest();
+  const { executeServerRequest, loading, error, isOnline } =
+    useMakeNetworkRequest();
 
   // Fetch  and set products
   const updateProducts = async (
@@ -86,30 +82,32 @@ const ProductsListing = () => {
       loadMore &&
       initialLoad &&
       updateProducts({ value: false }, searchQueryString, pageIndex);
-  }, [isVisible]);
+  }, [isVisible, isOnline]);
 
   return (
     <section className="products-list center column">
       {loading && products !== null && <Transition />}
-      {error && !loading && !products ? (
-        <Error />
-      ) : products !== null && products.length === 0 ? (
-        <h2 className="empty-products center">No Match</h2>
-      ) : products === null ? (
-        <CircularProgress />
-      ) : (
-        <ul className="products-ul flex">
-          {products.map((product) => (
-            <ProductCard
-              key={product._id}
-              product={product}
-              products={products}
-              setProducts={setProducts}
-            />
-          ))}
-        </ul>
-      )}
-      {loadMore ? (
+      <RenderFetchedData
+        isLoading={loading}
+        isOnline={isOnline}
+        isError={error}
+        emptyResultMessage="No Match"
+        data={products}
+      >
+        {products && (
+          <ul className="products-ul flex">
+            {products.map((product) => (
+              <ProductCard
+                key={product._id}
+                product={product}
+                products={products}
+                setProducts={setProducts}
+              />
+            ))}
+          </ul>
+        )}
+      </RenderFetchedData>
+      {loadMore && isOnline ? (
         <div id="products-progress" className="center" ref={containerRef}>
           <CircularProgress />
         </div>

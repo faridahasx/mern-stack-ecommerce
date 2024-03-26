@@ -1,11 +1,11 @@
+import "./UploadedImages.css";
 import { useNavigate } from "react-router-dom";
 import { Delete } from "@mui/icons-material";
 import { CircularProgress } from "@mui/material";
 import { image } from "../../assets/types";
 import { useAppDispatch } from "../../hooks/useStoreTypes";
-import { axiosInstance } from "../../utils/axiosInstance";
-import "./UploadedImages.css";
 import useMakeNetworkRequest from "../../hooks/useMakeNetworkRequest";
+import { axiosInstance } from "../../utils/axiosInstance";
 
 type Props = {
   images: image[];

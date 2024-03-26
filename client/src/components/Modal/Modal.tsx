@@ -1,5 +1,7 @@
+import useKeyDownListener from "../../hooks/useKeydownListener";
+import "./Modal.css";
 import { useEffect, ReactNode, MouseEvent } from "react";
-import "./styles.css";
+
 export type Props = {
   handleClose: Function;
   children?: ReactNode;
@@ -15,6 +17,12 @@ const Modal = ({ handleClose, children }: Props) => {
     const target = e.target as Element;
     target.className === "modal-container" && handleClose();
   };
+
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === "Escape") handleClose();
+  };
+
+  useKeyDownListener(handleKeyDown);
 
   return (
     <div className="modal-container" onClick={closeModalByClickingBackground}>

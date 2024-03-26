@@ -16,11 +16,10 @@ type Props = {
 const AuthForm = ({ page }: Props) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
   const [user, setUser] = useState({ email: "", password: "" });
   const { email, password } = user;
   const { executeServerRequest, loading } = useMakeNetworkRequest();
-
-  const [showPassword, setShowPassword] = useState(false);
 
   const handleInputChange = (e: ChangeEvent) => {
     let target = e.target as HTMLInputElement;

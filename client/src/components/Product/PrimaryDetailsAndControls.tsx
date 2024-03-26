@@ -1,10 +1,10 @@
+import "./PrimaryDetailsAndControls.css";
 import { useState } from "react";
 import { AddShoppingCart } from "@mui/icons-material";
 import { Product } from "../../assets/types";
 import { axiosInstance } from "../../utils/axiosInstance";
-import { ButtonProgress } from "../Loading/Loading";
-import "./PrimaryDetailsAndControls.css";
 import useMakeNetworkRequest from "../../hooks/useMakeNetworkRequest";
+import { ButtonProgress } from "../Loading/Loading";
 import SubmitButton from "../Buttons/SubmitButton";
 
 type Props = {

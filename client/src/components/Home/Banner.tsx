@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
 import "./Banner.css";
+import { Link } from "react-router-dom";
 
 // Popular products
 type Props = {

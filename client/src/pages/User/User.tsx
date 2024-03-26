@@ -1,8 +1,8 @@
+import "./User.css";
 import { useState } from "react";
 import ProfileNav from "../../components/User/ProfileNav";
 import AddressBook from "../../components/User/AddressBook";
 import Layout from "../../components/Layout";
-import "./User.css";
 
 const User = () => {
   const [currentWindow, setCurrentWindow] = useState("Address Book");

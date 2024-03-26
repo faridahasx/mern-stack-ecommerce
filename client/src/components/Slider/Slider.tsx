@@ -5,7 +5,6 @@ import {
   ArrowForwardIosOutlined,
   FiberManualRecord,
 } from "@mui/icons-material";
-
 import useKeyDownListener from "../../hooks/useKeydownListener";
 import useElementOnScreen from "../../hooks/useElementOnScreen";
 

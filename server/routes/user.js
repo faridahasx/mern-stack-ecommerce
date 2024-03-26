@@ -3,6 +3,13 @@ const { authentication } = require("../middleware/authVerify");
 const User = require("../models/User");
 const Address = require("../models/Address");
 const CartItem = require("../models/CartItem");
+const {
+  UPDATE_SUCCESS,
+  INVALID_CREDENTIALS,
+  DELETE_SUCCESS,
+  USER_NOT_FOUND,
+  SAVED_ADDRESS,
+} = require("../responseMessages");
 
 // Get user
 router.get("/info", authentication, async (req, res) => {
@@ -19,7 +26,7 @@ router.patch("/", authentication, async (req, res) => {
   try {
     const { email } = req.body;
     await User.findOneAndUpdate({ _id: req.user.userId }, { email });
-    res.json("Update Success.");
+    res.json(UPDATE_SUCCESS);
   } catch (err) {
     return res.status(500).json(err);
   }
@@ -37,12 +44,12 @@ router.delete("/delete", authentication, async (req, res) => {
     );
     const userPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
     if (userPassword !== password)
-      return res.status(401).json("Incorrect Password.");
+      return res.status(401).json(INVALID_CREDENTIALS);
     // Delete user
     await User.findOneAndDelete({ _id: req.user.userId });
     await CartItem.deleteMany({ user: req.user.userId });
     await Address.findOneAndDelete({ userId: req.user.userId });
-    res.status(201).json("Successfully deleted the user.");
+    res.status(201).json(DELETE_SUCCESS);
   } catch (err) {
     return res.status(500).json(err);
   }
@@ -52,7 +59,7 @@ router.delete("/delete", authentication, async (req, res) => {
 router.get("/address", authentication, async (req, res) => {
   try {
     const address = await Address.findOne({ userID: req.user.userId });
-    if (!address) return res.status(400).json("User address not found.");
+    if (!address) return res.status(400).json(USER_NOT_FOUND);
     res.json(address);
   } catch (err) {
     return res.status(500).json(err);
@@ -63,7 +70,7 @@ router.get("/address", authentication, async (req, res) => {
 router.patch("/address", authentication, async (req, res) => {
   try {
     await Address.findOneAndUpdate({ userID: req.user.userId }, req.body);
-    res.json("Address saved.");
+    res.json(SAVED_ADDRESS);
   } catch (err) {
     return res.status(500).json(err);
   }

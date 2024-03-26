@@ -1,9 +1,9 @@
+import "./ProfileNav.css";
 import { Home, Store, LocalShipping, Logout } from "@mui/icons-material";
 import { axiosInstance } from "../../utils/axiosInstance";
 import useMakeNetworkRequest from "../../hooks/useMakeNetworkRequest";
-import { ButtonProgress } from "../Loading/Loading";
 import useClearCredentials from "../../hooks/useClearCredentials";
-import "./ProfileNav.css";
+import { ButtonProgress } from "../Loading/Loading";
 
 const userNav = [
   { title: "Address Book", icon: <Home /> },

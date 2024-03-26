@@ -4,8 +4,8 @@ import { createSearchParams, Link, useNavigate } from "react-router-dom";
 import { IconButton } from "@mui/material";
 import { Clear, SearchOutlined } from "@mui/icons-material";
 import { Product } from "../../assets/types";
-import { axiosBaseInstance } from "../../utils/axiosInstance";
 import useMakeNetworkRequest from "../../hooks/useMakeNetworkRequest";
+import { axiosBaseInstance } from "../../utils/axiosInstance";
 
 type Props = {
   close: Function;

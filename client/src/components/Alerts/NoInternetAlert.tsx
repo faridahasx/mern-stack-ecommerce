@@ -1,4 +1,4 @@
-import "./NoInternet.css";
+import "./NoInternetAlert.css";
 
 const NoInternet = () => {
   return (

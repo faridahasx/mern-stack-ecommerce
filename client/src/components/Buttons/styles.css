@@ -12,6 +12,11 @@
     background-color: rgb(61, 166, 189);
 }
 
+.submit-button:disabled {
+    background-color: rgb(118, 152, 159);
+    cursor: auto;
+}
+
 .clear-button {
     color: rgb(44, 149, 173);
     background-color: rgb(255, 255, 255);
