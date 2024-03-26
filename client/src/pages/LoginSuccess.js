@@ -2,7 +2,7 @@ import { jsx as _jsx } from "react/jsx-runtime";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../hooks/useStoreTypes";
-import { Transition } from "../components/Loading/Loading";
+import { Transition } from "../components/loading/Loading";
 const LoginSuccess = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();

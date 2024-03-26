@@ -1,7 +1,7 @@
 import "./FormDialog.css";
 import { FormEventHandler, MouseEventHandler, ReactNode } from "react";
 import { CloseOutlined } from "@mui/icons-material";
-import Modal, { Props as ModalProps } from "../Modal/Modal";
+import Modal, { Props as ModalProps } from "../modal/Modal";
 
 interface Props extends ModalProps {
   handleSubmit: FormEventHandler<HTMLFormElement>;

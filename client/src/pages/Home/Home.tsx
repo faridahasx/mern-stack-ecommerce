@@ -1,7 +1,7 @@
 import Layout from "../../components/Layout";
-import CateogoriesSlider from "../../components/Home/CateogoriesSlider";
-import Banner from "../../components/Home/Banner";
-import ProductsListing from "../../components/ProductListing/ProductsListing";
+import CateogoriesSlider from "../../components/home/CateogoriesSlider";
+import Banner from "../../components/home/Banner";
+import ProductsListing from "../../components/product-listing/ProductsListing";
 
 const Home = () => {
   return (

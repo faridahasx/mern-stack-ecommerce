@@ -1,6 +1,6 @@
 import Layout from "../../components/Layout";
-import SortFilterNav from "../../components/SortAndFiltersNav/Nav";
-import ProductsListing from "../../components/ProductListing/ProductsListing";
+import SortFilterNav from "../../components/sort-and-filters-nav/Nav";
+import ProductsListing from "../../components/product-listing/ProductsListing";
 
 const Products = () => {
   return (

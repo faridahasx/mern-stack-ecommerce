@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { CircularProgress } from "@mui/material";
-import Error from "./Error/Error";
+import Error from "./error/Error";
 
 type Props = {
   isLoading: boolean;

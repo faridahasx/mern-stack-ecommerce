@@ -2,9 +2,9 @@ import { jsx as _jsx, Fragment as _Fragment, jsxs as _jsxs } from "react/jsx-run
 import { useEffect, useState } from "react";
 import { InputLabel, Input } from "@mui/material";
 import { axiosInstance } from "../../utils/axiosInstance";
-import { ButtonProgress } from "../Loading/Loading";
+import { ButtonProgress } from "../loading/Loading";
 import "./AddressBook.css";
-import SubmitButton from "../Buttons/SubmitButton";
+import SubmitButton from "../buttons/SubmitButton";
 import useMakeNetworkRequest from "../../hooks/useMakeNetworkRequest";
 let userAddressInitialState = {
     firstname: "",

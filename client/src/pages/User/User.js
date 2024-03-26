@@ -1,8 +1,8 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import "./User.css";
 import { useState } from "react";
-import ProfileNav from "../../components/User/ProfileNav";
-import AddressBook from "../../components/User/AddressBook";
+import ProfileNav from "../../components/user/ProfileNav";
+import AddressBook from "../../components/user/AddressBook";
 import Layout from "../../components/Layout";
 const User = () => {
     const [currentWindow, setCurrentWindow] = useState("Address Book");

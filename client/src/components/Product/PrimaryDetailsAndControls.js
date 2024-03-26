@@ -4,8 +4,8 @@ import { useState } from "react";
 import { AddShoppingCart } from "@mui/icons-material";
 import { axiosInstance } from "../../utils/axiosInstance";
 import useMakeNetworkRequest from "../../hooks/useMakeNetworkRequest";
-import { ButtonProgress } from "../Loading/Loading";
-import SubmitButton from "../Buttons/SubmitButton";
+import { ButtonProgress } from "../loading/Loading";
+import SubmitButton from "../buttons/SubmitButton";
 const PrimaryDetailsAndControls = ({ product }) => {
     const [size, setSize] = useState(product.size[0]);
     const { executeServerRequest, loading } = useMakeNetworkRequest();

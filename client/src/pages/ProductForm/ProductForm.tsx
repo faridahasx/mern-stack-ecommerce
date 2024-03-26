@@ -6,12 +6,12 @@ import { useAppDispatch } from "../../hooks/useStoreTypes";
 import useMakeNetworkRequest from "../../hooks/useMakeNetworkRequest";
 import { axiosBaseInstance, axiosInstance } from "../../utils/axiosInstance";
 import Layout from "../../components/Layout";
-import UploadedImages from "../../components/ProductForm/UploadedImages";
-import ImageInput from "../../components/ProductForm/ImageInput";
-import DataInput from "../../components/ProductForm/DataInput";
-import SelectInput from "../../components/ProductForm/SelectInput";
-import SubmitButton from "../../components/Buttons/SubmitButton";
-import { ButtonProgress } from "../../components/Loading/Loading";
+import UploadedImages from "../../components/product-form/UploadedImages";
+import ImageInput from "../../components/product-form/ImageInput";
+import DataInput from "../../components/product-form/DataInput";
+import SelectInput from "../../components/product-form/SelectInput";
+import SubmitButton from "../../components/buttons/SubmitButton";
+import { ButtonProgress } from "../../components/loading/Loading";
 
 const ProductForm = () => {
   const location = useLocation();

@@ -1,10 +1,10 @@
 import "./Nav.css";
 import { Suspense, lazy, useState } from "react";
 import { FilterList, Sort } from "@mui/icons-material";
-import ModalLoading from "../Modal/ModalLoading";
+import ModalLoading from "../modal/ModalLoading";
 
-const SortForm = lazy(() => import("../Sort/SortForm"));
-const Filters = lazy(() => import("../Filters/Filters"));
+const SortForm = lazy(() => import("../sort/SortForm"));
+const Filters = lazy(() => import("../filters/Filters"));
 
 const Nav = () => {
   const [openModal, setOpenModal] = useState("");

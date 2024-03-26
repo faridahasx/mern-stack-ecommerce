@@ -1,7 +1,7 @@
 import "./CateogoriesSlider.css";
 import { Link, createSearchParams } from "react-router-dom";
 import { homeSliderList } from "../../assets/constants";
-import Slider from "../Slider/Slider";
+import Slider from "../slider/Slider";
 
 const CateogoriesSlider = () => {
   return (

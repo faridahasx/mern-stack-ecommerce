@@ -4,8 +4,8 @@ import { AddShoppingCart } from "@mui/icons-material";
 import { Product } from "../../assets/types";
 import { axiosInstance } from "../../utils/axiosInstance";
 import useMakeNetworkRequest from "../../hooks/useMakeNetworkRequest";
-import { ButtonProgress } from "../Loading/Loading";
-import SubmitButton from "../Buttons/SubmitButton";
+import { ButtonProgress } from "../loading/Loading";
+import SubmitButton from "../buttons/SubmitButton";
 
 type Props = {
   product: Product;

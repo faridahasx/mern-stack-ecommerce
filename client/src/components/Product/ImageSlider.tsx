@@ -1,6 +1,6 @@
 import "./ImageSlider.css";
 import { image } from "../../assets/types";
-import Slider from "../Slider/Slider";
+import Slider from "../slider/Slider";
 
 type Props = {
   images: image[];

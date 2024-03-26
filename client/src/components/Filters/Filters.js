@@ -4,12 +4,12 @@ import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { FilterList } from "@mui/icons-material";
 import { filterValues } from "../../assets/constants";
-import SubmitButton from "../Buttons/SubmitButton";
-import ClearButton from "../Buttons/ClearButton";
+import SubmitButton from "../buttons/SubmitButton";
+import ClearButton from "../buttons/ClearButton";
 import OpenFieldsButton from "./OpenFieldsButton";
 import Field from "./Fields";
 import PriceFilterField from "./PriceFilter";
-import FormDialog from "../FormDialog/FormDialog";
+import FormDialog from "../form-dialog/FormDialog";
 const Filters = ({ handleCloseModal, closeModal }) => {
     const [searchParams, setSearchParams] = useSearchParams();
     const [filters, setFilters] = useState({

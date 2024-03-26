@@ -4,12 +4,12 @@ import { CartProduct } from "../../assets/types";
 import useMakeNetworkRequest from "../../hooks/useMakeNetworkRequest";
 import { axiosInstance } from "../../utils/axiosInstance";
 import Layout from "../../components/Layout";
-import CartListing from "../../components/Cart/CartListing";
-import SubmitButton from "../../components/Buttons/SubmitButton";
-import ModalLoading from "../../components/Modal/ModalLoading";
+import CartListing from "../../components/cart/CartListing";
+import SubmitButton from "../../components/buttons/SubmitButton";
+import ModalLoading from "../../components/modal/ModalLoading";
 import RenderFetchedData from "../../components/RenderFetchedData";
 
-const Checkout = lazy(() => import("../../components/Cart/Checkout"));
+const Checkout = lazy(() => import("../../components/cart/Checkout"));
 
 const Cart = () => {
   const [cartProducts, setCartProducts] = useState<Array<CartProduct> | null>(

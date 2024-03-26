@@ -2,8 +2,8 @@ import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import "./Auth.css";
 import { Link, useLocation } from "react-router-dom";
 import { Google } from "@mui/icons-material";
-import AuthForm from "../../components/Auth/AuthForm";
-import SubmitButton from "../../components/Buttons/SubmitButton";
+import AuthForm from "../../components/auth/AuthForm";
+import SubmitButton from "../../components/buttons/SubmitButton";
 const GOOGLE_CALLBACK_URL = import.meta.env.VITE_GOOGLE_CALLBACK_URL;
 const Auth = () => {
     const location = useLocation();

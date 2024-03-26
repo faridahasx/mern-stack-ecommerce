@@ -8,7 +8,7 @@ import useMakeNetworkRequest from "../../hooks/useMakeNetworkRequest";
 import getSearchQuery from "../../utils/getSearchQuery";
 import { axiosBaseInstance } from "../../utils/axiosInstance";
 import ProductCard from "./ProductCard";
-import { Transition } from "../Loading/Loading";
+import { Transition } from "../loading/Loading";
 import RenderFetchedData from "../RenderFetchedData";
 const productLimit = 12;
 const ProductsListing = () => {

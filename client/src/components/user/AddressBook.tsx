@@ -1,9 +1,9 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { InputLabel, Input } from "@mui/material";
 import { axiosInstance } from "../../utils/axiosInstance";
-import { ButtonProgress } from "../Loading/Loading";
+import { ButtonProgress } from "../loading/Loading";
 import "./AddressBook.css";
-import SubmitButton from "../Buttons/SubmitButton";
+import SubmitButton from "../buttons/SubmitButton";
 import useMakeNetworkRequest from "../../hooks/useMakeNetworkRequest";
 
 interface UserAddress {

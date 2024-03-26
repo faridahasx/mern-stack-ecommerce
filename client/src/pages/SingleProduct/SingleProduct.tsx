@@ -5,8 +5,8 @@ import { Product as ProductType } from "../../assets/types";
 import useMakeNetworkRequest from "../../hooks/useMakeNetworkRequest";
 import { axiosBaseInstance } from "../../utils/axiosInstance";
 import Layout from "../../components/Layout";
-import Product from "../../components/Product/Product";
-import Error from "../../components/Error/Error";
+import Product from "../../components/product/Product";
+import Error from "../../components/error/Error";
 
 const SingleProduct = () => {
   const location = useLocation();

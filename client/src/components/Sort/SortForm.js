@@ -5,7 +5,7 @@ import { useSearchParams } from "react-router-dom";
 import { Checkbox, FormControlLabel } from "@mui/material";
 import { Done, Sort } from "@mui/icons-material";
 import { sortValues } from "../../assets/constants";
-import FormDialog from "../FormDialog/FormDialog";
+import FormDialog from "../form-dialog/FormDialog";
 const SortForm = ({ handleCloseModal, closeModal }) => {
     const [searchParams, setSearchParams] = useSearchParams();
     const [sort, setSort] = useState(searchParams.get("sort") || "");

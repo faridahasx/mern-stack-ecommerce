@@ -6,8 +6,8 @@ import { InputLabel, InputAdornment, Input, IconButton } from "@mui/material";
 import useMakeNetworkRequest from "../../hooks/useMakeNetworkRequest";
 import { useAppDispatch } from "../../hooks/useStoreTypes";
 import { axiosInstance } from "../../utils/axiosInstance";
-import { ButtonProgress } from "../Loading/Loading";
-import SubmitButton from "../Buttons/SubmitButton";
+import { ButtonProgress } from "../loading/Loading";
+import SubmitButton from "../buttons/SubmitButton";
 
 type Props = {
   page: string;

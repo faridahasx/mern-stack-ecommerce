@@ -5,9 +5,9 @@ import { Link, useLocation } from "react-router-dom";
 import { SearchOutlined, CloseOutlined, MenuOutlined, } from "@mui/icons-material";
 import Categories from "./Categories";
 import UserLinks from "./UserLinks";
-import ModalLoading from "../Modal/ModalLoading";
+import ModalLoading from "../modal/ModalLoading";
 import useKeyDownListener from "../../hooks/useKeydownListener";
-const Search = lazy(() => import("../Search/Search"));
+const Search = lazy(() => import("../search/Search"));
 const Navigation = () => {
     const location = useLocation();
     const [menuOpen, setMenuOpen] = useState(false);

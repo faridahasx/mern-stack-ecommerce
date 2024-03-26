@@ -2,7 +2,7 @@ import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import "./CateogoriesSlider.css";
 import { Link, createSearchParams } from "react-router-dom";
 import { homeSliderList } from "../../assets/constants";
-import Slider from "../Slider/Slider";
+import Slider from "../slider/Slider";
 const CateogoriesSlider = () => {
     return (_jsx(Slider, { sliderLength: homeSliderList.length, children: _jsx("ul", { className: "cat-slider-ul flex", children: homeSliderList.map((item, ind) => (_jsx("li", { className: "category-slider-li center", children: _jsxs(Link, { className: "flex category-slider-link", target: "_blank", to: {
                         pathname: "/products",

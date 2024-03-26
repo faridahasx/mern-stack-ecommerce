@@ -1,7 +1,7 @@
 import "./User.css";
 import { useState } from "react";
-import ProfileNav from "../../components/User/ProfileNav";
-import AddressBook from "../../components/User/AddressBook";
+import ProfileNav from "../../components/user/ProfileNav";
+import AddressBook from "../../components/user/AddressBook";
 import Layout from "../../components/Layout";
 
 const User = () => {

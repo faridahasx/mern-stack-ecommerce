@@ -3,7 +3,7 @@ import { Home, Store, LocalShipping, Logout } from "@mui/icons-material";
 import { axiosInstance } from "../../utils/axiosInstance";
 import useMakeNetworkRequest from "../../hooks/useMakeNetworkRequest";
 import useClearCredentials from "../../hooks/useClearCredentials";
-import { ButtonProgress } from "../Loading/Loading";
+import { ButtonProgress } from "../loading/Loading";
 
 const userNav = [
   { title: "Address Book", icon: <Home /> },
