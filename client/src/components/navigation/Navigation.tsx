@@ -9,6 +9,7 @@ import {
 import Categories from "./Categories";
 import UserLinks from "./UserLinks";
 import useKeyDownListener from "../../hooks/useKeydownListener";
+import ModalLoading from "../modal/ModalLoading";
 
 const Search = lazy(() => import("../search/Search"));
 
@@ -100,8 +101,11 @@ const Navigation = () => {
               />
             </nav>
           </div>
+
           {searchBarOpen && (
-            <Suspense>
+            <Suspense
+              fallback={<ModalLoading handleClose={toggleSearchOpen} />}
+            >
               <Search close={toggleSearchOpen} />
             </Suspense>
           )}
