@@ -101,7 +101,6 @@ const Navigation = () => {
               />
             </nav>
           </div>
-
           {searchBarOpen && (
             <Suspense
               fallback={<ModalLoading handleClose={toggleSearchOpen} />}
