@@ -1,6 +1,0 @@
-.field {
-    height: calc(30 * var(--vh));
-    max-height: 250px;
-    border: 0.1px solid rgb(159, 157, 157);
-    overflow: auto;
-}
