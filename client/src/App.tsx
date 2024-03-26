@@ -4,16 +4,16 @@ import "./App.css";
 import { useEffect, lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 // Custom hooks
-import useNetworkStatus from "hooks/useNetworkStatus";
-import { useAppDispatch, useAppSelector } from "hooks/useStoreTypes";
-import useWindowSize from "hooks/useWindowSize";
+import useNetworkStatus from "./hooks/useNetworkStatus";
+import { useAppDispatch, useAppSelector } from "./hooks/useStoreTypes";
+import useWindowSize from "./hooks/useWindowSize";
 // Utils
-import { axiosInstance } from "utils/axiosInstance";
+import { axiosInstance } from "./utils/axiosInstance";
 // Components
-import { Transition } from "components/Loading/Loading";
-import ErrorBoundary from "components/Error/ErrorBoundary";
-import Alert from "components/Alerts/Alert";
-import NoInternetAlert from "components/Alerts/NoInternetAlert";
+import { Transition } from "./components/Loading/Loading";
+import ErrorBoundary from "./components/Error/ErrorBoundary";
+import Alert from "./components/Alerts/Alert";
+import NoInternetAlert from "./components/Alerts/NoInternetAlert";
 
 // Pages
 const Home: any = lazy(() => import("./pages/Home/Home"));

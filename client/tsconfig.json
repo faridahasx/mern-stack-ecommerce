@@ -14,15 +14,15 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "baseUrl": "src",
-    "jsx": "react-jsx",
+    "jsx": "react-jsx"
   },
   "include": [
-    "src/**/*"
+    "src",
+    "src/pages/Home"
   ],
   "references": [
     {
