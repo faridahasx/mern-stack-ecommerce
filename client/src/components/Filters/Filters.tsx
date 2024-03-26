@@ -7,7 +7,7 @@ import { Filters as FiltersType } from "../../assets/types";
 import SubmitButton from "../buttons/SubmitButton";
 import ClearButton from "../buttons/ClearButton";
 import OpenFieldsButton from "./OpenFieldsButton";
-import Field from "./Fields";
+import Fields from "./Fields";
 import PriceFilterField from "./PriceFilter";
 import FormDialog from "../form-dialog/FormDialog";
 
@@ -79,7 +79,7 @@ const Filters = ({ handleCloseModal, closeModal }: Props) => {
             />
             {openFilter === filterName &&
               (filterName !== "price" ? (
-                <Field
+                <Fields
                   filters={filters}
                   setFilters={setFilters}
                   filterName={filterName}
