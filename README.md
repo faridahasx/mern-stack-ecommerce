@@ -2,7 +2,7 @@
 
 [Visit the site](https://sw-shop.netlify.app/) | [Server](https://github.com/faridahasx/mern-stack-ecommerce/tree/main/server) | [Client](https://github.com/faridahasx/mern-stack-ecommerce/tree/main/client)
 
-![Project gif](https://github.com/faridahasx/mern-stack-ecommerce/blob/main/project.gif)
+![Project image](https://github.com/faridahasx/mern-stack-ecommerce/blob/main/sw.png)
 
 ## Overview
 
@@ -37,10 +37,10 @@
   - The codebase is formatted using Prettier.
 
 ## Optimizations
+
 - Add tests
 - Add payment system
 - Move server and client to the same domain, because setting authentication cookies on iPhones requires the server and client to be on the same domain.
-
 
 ## Usage
 
@@ -111,13 +111,15 @@ To set up the project locally, follow these steps:
 
     - Create a MongoDB Atlas account or use an existing MongoDB server.
     - Obtain your MongoDB connection URI.
-11. Configure MongoDB Connection URI:
-    - Add the following details to the `config.env` file in the server directory:
-        ```env
-        MONGO_URI = your_mongodb_connection_uri
-        ```
 
-11. **Start the development servers:**
+11. Configure MongoDB Connection URI:
+
+    - Add the following details to the `config.env` file in the server directory:
+      ```env
+      MONGO_URI = your_mongodb_connection_uri
+      ```
+
+12. **Start the development servers:**
 
     ```bash
     # Start client
@@ -129,19 +131,15 @@ To set up the project locally, follow these steps:
     npm run dev
     ```
 
-
-
 ## Issues 📝
+
 Currently, it’s impossible to authenticate iPhone users properly because setting authentication cookies on iPhones requires the server and client to be on the same domain.
 
-
-## 📇 Contact 
+## 📇 Contact
 
 If you have any queries, please feel free to reach out:
+
 - [🌎 My official website](https://faridah.vercel.app)
 - Email: farida.hasanova009@gmail.com
 - Twitter: [@faridahasx](https://twitter.com/faridahasx)
 - LinkedIn: [Farida Hasanova](https://www.linkedin.com/in/faridahasx)
-
-
-
