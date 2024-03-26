@@ -14,6 +14,7 @@ router.get("/", authentication, async (req, res) => {
       length: userCart.length,
     });
   } catch (err) {
+    console.log(req.user.userId);
     res.status(500).json(err);
   }
 });

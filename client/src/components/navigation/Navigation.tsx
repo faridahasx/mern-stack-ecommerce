@@ -8,7 +8,6 @@ import {
 } from "@mui/icons-material";
 import Categories from "./Categories";
 import UserLinks from "./UserLinks";
-import ModalLoading from "../modal/ModalLoading";
 import useKeyDownListener from "../../hooks/useKeydownListener";
 
 const Search = lazy(() => import("../search/Search"));
@@ -102,9 +101,7 @@ const Navigation = () => {
             </nav>
           </div>
           {searchBarOpen && (
-            <Suspense
-              fallback={<ModalLoading handleClose={toggleSearchOpen} />}
-            >
+            <Suspense>
               <Search close={toggleSearchOpen} />
             </Suspense>
           )}

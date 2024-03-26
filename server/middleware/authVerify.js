@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const {
   generateAndSendAuthTokens,
 } = require("../utils/generateAndSendAuthTokens");
+const { AUTH_ERROR } = require("../responseMessages");
 
 const JWT_ACCESS_TOKEN_SECRET = process.env.JWT_ACCESS_TOKEN_SECRET;
 const JWT_REFRESH_TOKEN_SECRET = process.env.JWT_REFRESH_TOKEN_SECRET || "";
@@ -13,10 +14,10 @@ const authentication = (req, res, next) => {
       if (err) {
         // check for refresh token when access token is invalid
         const refreshToken = req.cookies.refreshtoken;
-        if (!refreshToken) return res.status(401).json(authError);
+        if (!refreshToken) return res.status(401).json(AUTH_ERROR);
         jwt.verify(refreshToken, JWT_REFRESH_TOKEN_SECRET, (err, user) => {
           // if refresh token is invalid deny access
-          if (err) return res.status(401).json(authError);
+          if (err) return res.status(401).json(AUTH_ERROR);
           // renew both tokens
           generateAndSendAuthTokens(res, user.userId, user.isAdmin);
           req.user = user;

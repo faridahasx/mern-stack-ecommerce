@@ -17,8 +17,9 @@ const Categories = () => {
             }}
           >
             <span>{item}</span>
-
-            <KeyboardArrowRightOutlined className="hide-desktop-nav" />
+            <span className="hide-desktop-nav">
+              <KeyboardArrowRightOutlined />
+            </span>
           </Link>
         </li>
       ))}

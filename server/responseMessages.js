@@ -7,6 +7,8 @@ exports.INVALID_CREDENTIALS = "Wrong credentials";
 exports.LOGIN_SUCCESS = "Login Success!";
 exports.EMAIL_NOT_FOUND = "Email Not Found";
 
+exports.AUTH_ERROR = "Please Login";
+
 // USER
 exports.USER_NOT_FOUND = "User Not Found";
 exports.SAVED_ADDRESS = "Saved Address";

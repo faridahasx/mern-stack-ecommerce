@@ -14,6 +14,7 @@ import { Transition } from "./components/loading/Loading";
 import ErrorBoundary from "./components/error/ErrorBoundary";
 import Alert from "./components/alerts/Alert";
 import NoInternetAlert from "./components/alerts/NoInternetAlert";
+import useClearCredentials from "./hooks/useClearCredentials";
 
 // Pages
 const Home: any = lazy(() => import("./pages/Home/Home"));
@@ -29,6 +30,7 @@ function App() {
   const auth = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const isOnline = useNetworkStatus();
+  const clearCredentials = useClearCredentials();
   useWindowSize();
   useEffect(() => {
     const getCredentials = async () => {
@@ -38,7 +40,7 @@ function App() {
         !auth.isLogged && dispatch({ type: "IS_LOGGED", payload: true });
       } catch (err: any) {
         if (err.response && err.response.status === 401) {
-          localStorage.removeItem("firstLogin");
+          clearCredentials();
         }
       }
     };
