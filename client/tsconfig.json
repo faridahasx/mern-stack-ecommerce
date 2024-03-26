@@ -27,10 +27,6 @@
   "exclude": [
     "node_modules"
   ],
-  "files": [
-    "src/components/Navigation/Navigation.tsx",
-    "src/components/Loading/Loading.tsx"
-  ],
   "references": [
     {
       "path": "./tsconfig.node.json"
