@@ -74,14 +74,14 @@ const Navigation = () => {
       >
         <header>
           <div id="header-top" className="flex">
-            <button className="icon hide-desktop" onClick={toggleMenuOpen}>
+            <button className="icon hide-desktop-nav" onClick={toggleMenuOpen}>
               {menuOpen ? <CloseOutlined /> : <MenuOutlined />}
             </button>
             <Link className="center logo" title="Home" to="/">
               S.W.
             </Link>
             <button
-              className="icon hide-desktop"
+              className="icon hide-desktop-nav"
               title="Search"
               onClick={toggleSearchOpen}
             >

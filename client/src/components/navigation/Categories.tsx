@@ -18,7 +18,7 @@ const Categories = () => {
           >
             <span>{item}</span>
 
-            <KeyboardArrowRightOutlined className="dt-hidden" />
+            <KeyboardArrowRightOutlined className="hide-desktop-nav" />
           </Link>
         </li>
       ))}

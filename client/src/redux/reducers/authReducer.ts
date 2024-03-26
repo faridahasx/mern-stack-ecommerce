@@ -1,9 +1,9 @@
 import ACTIONS from "../actions";
 
-const initialState = {
-  isAdmin: false,
-  isLogged: false,
-};
+interface IState {
+  isAdmin: boolean | null;
+  isLogged: boolean | null;
+}
 
 interface IsLoggedAction {
   type: "IS_LOGGED";
@@ -14,6 +14,11 @@ interface IsAdminAction {
   type: "IS_ADMIN";
   payload: boolean;
 }
+
+const initialState: IState = {
+  isAdmin: null,
+  isLogged: null,
+};
 
 type Action = IsLoggedAction | IsAdminAction;
 

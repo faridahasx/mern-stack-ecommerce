@@ -85,7 +85,8 @@ router.post("/login", async (req, res) => {
 // Logout
 router.get("/logout", async (req, res) => {
   try {
-    res.clearCookie("refreshtoken", { path: "api/user/refresh_token" });
+    res.clearCookie("refreshtoken");
+    res.clearCookie("accesstoken");
     return res.json("Logged Out");
   } catch (err) {
     return res.status(500).json(err);
@@ -103,13 +104,7 @@ router.get("/login/failed", (req, res) => {
 // Login Success
 router.get("/login/success", (req, res) => {
   if (req.user) {
-    const refresh_token = createRefreshToken({ id: req.user._id });
-    res.cookie("refreshtoken", refresh_token, {
-      httpOnly: true,
-      secure: true,
-      sameSite: "none",
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-    });
+    generateAndSendAuthTokens(res, req.user._id, req.user.isAdmin);
     res.status(200).json(LOGIN_SUCCESS);
   }
 });

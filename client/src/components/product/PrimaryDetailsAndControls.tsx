@@ -1,6 +1,7 @@
 import "./PrimaryDetailsAndControls.css";
 import { useState } from "react";
 import { AddShoppingCart } from "@mui/icons-material";
+import { useAppDispatch, useAppSelector } from "../../hooks/useStoreTypes";
 import { Product } from "../../assets/types";
 import { axiosInstance } from "../../utils/axiosInstance";
 import useMakeNetworkRequest from "../../hooks/useMakeNetworkRequest";
@@ -13,26 +14,35 @@ type Props = {
 
 const PrimaryDetailsAndControls = ({ product }: Props) => {
   const [size, setSize] = useState(product.size[0]);
+  const auth = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
   const { executeServerRequest, loading } = useMakeNetworkRequest();
 
   const handleAddToCart = () => {
-    executeServerRequest(
-      async () => {
-        await axiosInstance.post("/api/cart", {
-          productID: product._id,
-          size: size,
-        });
-      },
-      [],
-      true,
-      "Added"
-    );
+    if (auth.isLogged) {
+      executeServerRequest(
+        async () => {
+          await axiosInstance.post("/api/cart", {
+            productID: product._id,
+            size: size,
+          });
+        },
+        [],
+        true,
+        "Added"
+      );
+    } else {
+      dispatch({
+        type: "ERROR",
+        payload: "Please login",
+      });
+    }
   };
 
   return (
     <section id="product-primary" className="flex column">
       <div id="s-product-details" className="flex">
-        <div>
+        <div className="product-full">
           <span className="flex">
             <h1 className="product-dtl">{product.title}</h1>
             <h3 className="product-dtl">${product.price}</h3>

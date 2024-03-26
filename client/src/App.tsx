@@ -58,30 +58,66 @@ function App() {
             <Route path="/product/:id" element={<Product />} />
             <Route
               path="/login"
-              element={auth.isLogged ? <Navigate replace to="/" /> : <Auth />}
+              element={
+                auth.isLogged === true ? <Navigate replace to="/" /> : <Auth />
+              }
             />
             <Route
               path="/register"
-              element={auth.isLogged ? <Navigate replace to="/" /> : <Auth />}
+              element={
+                auth.isLogged === true ? <Navigate replace to="/" /> : <Auth />
+              }
             />
             <Route
               path="/login-success"
               element={
-                auth.isLogged ? <Navigate replace to="/" /> : <LoginSuccess />
+                auth.isLogged === true ? (
+                  <Navigate replace to="/" />
+                ) : (
+                  <LoginSuccess />
+                )
               }
             />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/user" element={<User />} />
+            {/* Protected routes */}
+            <Route
+              path="/cart"
+              element={
+                auth.isLogged === false ? (
+                  <Navigate replace to="/login" />
+                ) : (
+                  <Cart />
+                )
+              }
+            />
+            <Route
+              path="/user"
+              element={
+                auth.isLogged === false ? (
+                  <Navigate replace to="/login" />
+                ) : (
+                  <User />
+                )
+              }
+            />
+
             <Route
               path="/add"
               element={
-                !auth.isAdmin ? <Navigate replace to="/" /> : <ProductForm />
+                auth.isAdmin === false ? (
+                  <Navigate replace to="/" />
+                ) : (
+                  <ProductForm />
+                )
               }
             />
             <Route
               path="/edit/:id"
               element={
-                !auth.isAdmin ? <Navigate replace to="/" /> : <ProductForm />
+                auth.isAdmin === false ? (
+                  <Navigate replace to="/" />
+                ) : (
+                  <ProductForm />
+                )
               }
             />
             <Route path="*" element={<Navigate to="/" />} />

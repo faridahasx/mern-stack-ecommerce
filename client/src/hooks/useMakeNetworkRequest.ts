@@ -35,8 +35,8 @@ const useMakeNetworkRequest = () => {
           // Clear credentials and dispatch an alert
           clearCredentials();
           dispatch({
-            type: "ALERT",
-            payload: "Please login",
+            type: "ERROR",
+            payload: "Please Login",
           });
         } else if (typeof err.response.data === "string") {
           // Dispatch the error message if it's a string

@@ -9,11 +9,6 @@
     .category-li {
         padding: 10px 20px;
     }
-
-    .dt-hidden {
-        display: none;
-    }
-
 }
 
 @media all and (max-width: 1000px) {

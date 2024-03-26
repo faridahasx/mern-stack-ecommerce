@@ -12,10 +12,13 @@
     height: 100%;
 }
 
+.product-full {
+    width: 100%;
+}
+
 .product-dtl {
     padding-bottom: 30px;
 }
-
 
 #s-product-details h2,
 #s-product-details h3 {
