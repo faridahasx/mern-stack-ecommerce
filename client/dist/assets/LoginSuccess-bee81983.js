@@ -1,1 +1,0 @@
-import{h as e,g as o,r,j as t,T as c}from"./index-a91e9132.js";const n=()=>{const a=e(),s=o();return r.useEffect(()=>{localStorage.setItem("firstLogin","true"),s({type:"IS_LOGGED",payload:!0}),s({type:"SUCCESS",payload:"Login Success"}),a("/")},[]),t("div",{children:t(c,{})})};export{n as default};

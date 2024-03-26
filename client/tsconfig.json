@@ -11,19 +11,25 @@
     "skipLibCheck": true,
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
-    "allowImportingTsExtensions": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
     "moduleResolution": "Node",
     "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx"
+    // "isolatedModules": true,
+    // "noEmit": true,
+    "jsx": "react-jsx",
   },
   "include": [
-    "src",
-    "src/pages/Home"
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "files": [
+    "src/components/Navigation/Navigation.tsx",
+    "src/components/Loading/Loading.tsx"
   ],
   "references": [
     {

@@ -10,10 +10,10 @@ import useWindowSize from "./hooks/useWindowSize";
 // Utils
 import { axiosInstance } from "./utils/axiosInstance";
 // Components
-import { Transition } from "./components/Loading/Loading.tsx";
-import ErrorBoundary from "./components/Error/ErrorBoundary.tsx";
-import Alert from "./components/Alerts/Alert.tsx";
-import NoInternetAlert from "./components/Alerts/NoInternetAlert.tsx";
+import { Transition } from "./components/Loading/Loading";
+import ErrorBoundary from "./components/Error/ErrorBoundary";
+import Alert from "./components/Alerts/Alert";
+import NoInternetAlert from "./components/Alerts/NoInternetAlert";
 
 // Pages
 const Home: any = lazy(() => import("./pages/Home/Home"));
