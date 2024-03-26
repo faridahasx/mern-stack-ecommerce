@@ -19,7 +19,12 @@ const PrimaryDetailsAndControls = ({ product }: Props) => {
   const { executeServerRequest, loading } = useMakeNetworkRequest();
 
   const handleAddToCart = () => {
-    if (auth.isLogged) {
+    if (auth.isLogged === false) {
+      dispatch({
+        type: "ERROR",
+        payload: "Please Login",
+      });
+    } else {
       executeServerRequest(
         async () => {
           await axiosInstance.post("/api/cart", {
@@ -31,11 +36,6 @@ const PrimaryDetailsAndControls = ({ product }: Props) => {
         true,
         "Added"
       );
-    } else {
-      dispatch({
-        type: "ERROR",
-        payload: "Please login",
-      });
     }
   };
 

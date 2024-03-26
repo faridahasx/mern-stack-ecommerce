@@ -10,7 +10,7 @@ import useWindowSize from "./hooks/useWindowSize";
 // Utils
 import { axiosInstance } from "./utils/axiosInstance";
 // Components
-import { Transition } from "./components/loading/Loading";
+import { PageLoading } from "./components/loading/Loading";
 import ErrorBoundary from "./components/error/ErrorBoundary";
 import Alert from "./components/alerts/Alert";
 import NoInternetAlert from "./components/alerts/NoInternetAlert";
@@ -50,10 +50,9 @@ function App() {
   return (
     <BrowserRouter>
       <Alert />
-
       {!isOnline && <NoInternetAlert />}
       <ErrorBoundary>
-        <Suspense fallback={<Transition />}>
+        <Suspense fallback={<PageLoading />}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<Products />} />

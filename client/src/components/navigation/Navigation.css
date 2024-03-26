@@ -110,6 +110,9 @@ header {
         background-color: white;
     }
 
+    .overflow-hidden-mobile {
+        overflow: hidden;
+    }
 
 }
 

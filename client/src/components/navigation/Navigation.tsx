@@ -37,8 +37,8 @@ const Navigation = () => {
   useEffect(() => {
     // Handle overflow
     menuOpen || searchBarOpen
-      ? document.body.classList.add("overflow-hidden")
-      : document.body.classList.remove("overflow-hidden");
+      ? document.body.classList.add("overflow-hidden-mobile")
+      : document.body.classList.remove("overflow-hidden-mobile");
   }, [menuOpen, searchBarOpen]);
 
   const closeMenuByClickingBackground = (e: MouseEvent<HTMLDivElement>) => {

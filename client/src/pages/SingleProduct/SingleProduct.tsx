@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { CircularProgress } from "@mui/material";
 import { Product as ProductType } from "../../assets/types";
 import useMakeNetworkRequest from "../../hooks/useMakeNetworkRequest";
 import { axiosBaseInstance } from "../../utils/axiosInstance";
 import Layout from "../../components/Layout";
 import Product from "../../components/product/Product";
 import Error from "../../components/error/Error";
+import { Progress } from "../../components/loading/Loading";
 
 const SingleProduct = () => {
   const location = useLocation();
@@ -20,7 +20,6 @@ const SingleProduct = () => {
       executeServerRequest(async () => {
         const res = await axiosBaseInstance.get(`/api/products/${productId}`);
         setProduct(res.data);
-        console.log(res.data);
       });
   }, [location, isOnline]);
 
@@ -31,7 +30,7 @@ const SingleProduct = () => {
   return (
     <Layout>
       {loading && !product ? (
-        <CircularProgress />
+        <Progress />
       ) : product ? (
         <Product product={product} />
       ) : error ? (

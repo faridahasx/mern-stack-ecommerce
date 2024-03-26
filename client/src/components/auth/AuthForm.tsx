@@ -30,6 +30,8 @@ const AuthForm = ({ page }: Props) => {
 
   const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // console.log(window.history);
+
     executeServerRequest(async () => {
       await axiosInstance.post(`/api/auth/${page}`, {
         email,

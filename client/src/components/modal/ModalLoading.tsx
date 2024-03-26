@@ -4,7 +4,7 @@ import { CircularProgress } from "@mui/material";
 const ModalLoading = ({ handleClose }: Props) => {
   return (
     <Modal handleClose={handleClose}>
-      <CircularProgress />
+      <CircularProgress sx={{ color: "white" }} />
     </Modal>
   );
 };

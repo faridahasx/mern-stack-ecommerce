@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import { CircularProgress } from "@mui/material";
 import Error from "./error/Error";
+import { Progress } from "./loading/Loading";
 
 type Props = {
   isLoading: boolean;
@@ -29,7 +29,7 @@ const RenderFetchedData = ({
         !isOnline ? (
           <Error heading="No internet" />
         ) : (
-          <CircularProgress />
+          <Progress />
         )
       ) : (
         children

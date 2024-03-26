@@ -10,7 +10,6 @@ const useClearCredentials = () => {
     localStorage.removeItem("firstLogin");
     dispatch({ type: "IS_LOGGED", payload: false });
     dispatch({ type: "IS_ADMIN", payload: false });
-    console.log("RUN");
   };
 };
 

@@ -10,7 +10,7 @@ const LoginSuccess = () => {
   useEffect(() => {
     localStorage.setItem("firstLogin", "true");
     dispatch({ type: "IS_LOGGED", payload: true });
-    dispatch({ type: "SUCCESS", payload: "Login Success" });
+    dispatch({ type: "SUCCESS", payload: "Login Success!" });
     navigate("/");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

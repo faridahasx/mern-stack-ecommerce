@@ -13,4 +13,16 @@ const ButtonProgress = () => {
   return <CircularProgress sx={{ color: "white" }} className="btn-progress" />;
 };
 
-export { Transition, ButtonProgress };
+const Progress = () => {
+  return <CircularProgress sx={{ color: "slategrey" }} />;
+};
+
+const PageLoading = () => {
+  return (
+    <div className="loading-page center">
+      <Progress />
+    </div>
+  );
+};
+
+export { Transition, ButtonProgress, PageLoading, Progress };
