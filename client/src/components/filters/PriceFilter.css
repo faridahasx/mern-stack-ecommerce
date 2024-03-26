@@ -1,0 +1,9 @@
+#price-filter {
+    justify-content: space-around;
+    align-items: center;
+}
+
+.price-input {
+    width: 35%;
+    height: 40px;
+}

@@ -1,0 +1,14 @@
+.modal-container {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: calc(100 * var(--vh));
+    background-color: rgba(0, 0, 0, 0.366);
+    cursor: pointer;
+    min-width: var(--min-width);
+}
