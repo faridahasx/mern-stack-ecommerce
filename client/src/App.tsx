@@ -5,16 +5,14 @@ import { useEffect, lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 // Custom hooks
 import useNetworkStatus from "./hooks/useNetworkStatus";
-import { useAppDispatch, useAppSelector } from "./hooks/useStoreTypes";
+import { useAppSelector } from "./hooks/useStoreTypes";
 import useWindowSize from "./hooks/useWindowSize";
-// Utils
-import { axiosInstance } from "./utils/axiosInstance";
 // Components
 import { PageLoading } from "./components/loading/Loading";
 import ErrorBoundary from "./components/error/ErrorBoundary";
 import Alert from "./components/alerts/Alert";
 import NoInternetAlert from "./components/alerts/NoInternetAlert";
-import useClearCredentials from "./hooks/useClearCredentials";
+import useGetUserCredentials from "./hooks/useGetUserCredentials";
 
 // Pages
 const Home: any = lazy(() => import("./pages/Home/Home"));
@@ -28,23 +26,12 @@ const ProductForm: any = lazy(() => import("./pages/ProductForm/ProductForm"));
 
 function App() {
   const auth = useAppSelector((state) => state.auth);
-  const dispatch = useAppDispatch();
   const isOnline = useNetworkStatus();
-  const clearCredentials = useClearCredentials();
+  const getUserCredentials = useGetUserCredentials();
   useWindowSize();
+
   useEffect(() => {
-    const getCredentials = async () => {
-      try {
-        const res = await axiosInstance.get("/api/user/info");
-        dispatch({ type: "IS_ADMIN", payload: res.data.isAdmin });
-        !auth.isLogged && dispatch({ type: "IS_LOGGED", payload: true });
-      } catch (err: any) {
-        if (err.response && err.response.status === 401) {
-          clearCredentials();
-        }
-      }
-    };
-    if (!auth.isLogged && localStorage.getItem("firstLogin")) getCredentials();
+    if (auth.isLogged === null) getUserCredentials();
   }, [auth.isLogged]);
 
   return (
