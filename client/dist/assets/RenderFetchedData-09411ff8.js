@@ -1,0 +1,1 @@
+import{j as r,F as a,E as n,C as h}from"./index-a91e9132.js";const m=({isLoading:s,isOnline:t,isError:l,emptyResultMessage:c,data:e,children:o})=>r(a,{children:l&&!s&&!e?r(n,{}):e!==null&&e.length===0?r("h2",{className:"empty-products center",children:c}):e===null?t?r(h,{}):r(n,{heading:"No internet"}):o});export{m as R};
